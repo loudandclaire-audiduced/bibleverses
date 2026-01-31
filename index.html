@@ -150,23 +150,30 @@
 
 <script>
 /* ===============================
-   ALL 100 VERSES + CATEGORIES
+   ALL VERSES YOU PROVIDED
    =============================== */
 const VERSES = [
-  // Knowing God’s Love & Character (10)
-  { category:"Knowing God’s Love & Character", ref:"1 John 4:8", text:"God is love." },
-  { category:"Knowing God’s Love & Character", ref:"Genesis 1:1", text:"In the beginning God created the heavens and the earth." },
-  { category:"Knowing God’s Love & Character", ref:"John 3:16", text:"For God so loved the world that he gave his one and only Son." },
-  { category:"Knowing God’s Love & Character", ref:"Psalm 145:9", text:"The Lord is good to all." },
-  { category:"Knowing God’s Love & Character", ref:"1 John 4:19", text:"We love because he first loved us." },
-  { category:"Knowing God’s Love & Character", ref:"Genesis 16:13", text:"You are the God who sees me." },
-  { category:"Knowing God’s Love & Character", ref:"James 1:17", text:"Every good and perfect gift is from above." },
-  { category:"Knowing God’s Love & Character", ref:"Psalm 100:3", text:"Know that the Lord is God. It is he who made us, and we are his." },
-  { category:"Knowing God’s Love & Character", ref:"Isaiah 40:28", text:"The Lord is the everlasting God, the Creator of the ends of the earth." },
-  { category:"Knowing God’s Love & Character", ref:"Psalm 136:1", text:"Give thanks to the Lord, for he is good. His love endures forever." },
+  // Knowing God’s Love & Creation
+  { category:"Knowing God’s Love & Creation", ref:"Genesis 1:1", text:"In the beginning God created the heavens and the earth." },
+  { category:"Knowing God’s Love & Creation", ref:"Psalm 139:14", text:"I praise you because I am fearfully and wonderfully made." },
+  { category:"Knowing God’s Love & Creation", ref:"John 3:16", text:"For God so loved the world that he gave his one and only Son." },
+  { category:"Knowing God’s Love & Creation", ref:"Psalm 145:9", text:"The Lord is good to all." },
+  { category:"Knowing God’s Love & Creation", ref:"1 John 4:19", text:"We love because he first loved us." },
+  { category:"Knowing God’s Love & Creation", ref:"Genesis 16:13", text:"You are the God who sees me." },
+  { category:"Knowing God’s Love & Creation", ref:"James 1:17", text:"Every good and perfect gift is from above." },
+  { category:"Knowing God’s Love & Creation", ref:"Psalm 100:3", text:"Know that the Lord is God. It is he who made us, and we are his." },
+  { category:"Knowing God’s Love & Creation", ref:"Isaiah 40:28", text:"The Lord is the everlasting God, the Creator of the ends of the earth." },
+  { category:"Knowing God’s Love & Creation", ref:"Psalm 136:1", text:"Give thanks to the Lord, for he is good. His love endures forever." },
+  { category:"Knowing God’s Love & Creation", ref:"Psalm 19:1", text:"The heavens declare the glory of God; the skies proclaim the work of his hands." },
+  { category:"Knowing God’s Love & Creation", ref:"Psalm 147:4", text:"He determines the number of the stars and calls them each by name." },
+  { category:"Knowing God’s Love & Creation", ref:"Isaiah 40:26", text:"Lift up your eyes and look to the heavens: Who created all these?" },
+  { category:"Knowing God’s Love & Creation", ref:"Psalm 104:24", text:"How many are your works, Lord! In wisdom you made them all." },
+  { category:"Knowing God’s Love & Creation", ref:"Psalm 33:6", text:"By the word of the Lord the heavens were made." },
+  { category:"Knowing God’s Love & Creation", ref:"Psalm 139:1", text:"O Lord, you have searched me and you know me." },
 
-  // Strength, Courage & Comfort (10)
+  // Strength, Courage & Comfort
   { category:"Strength, Courage & Comfort", ref:"Joshua 1:9", text:"Be strong and courageous. Do not be afraid... for the Lord your God will be with you." },
+  { category:"Strength, Courage & Comfort", ref:"Deuteronomy 31:8", text:"The Lord himself goes before you and will be with you; he will never leave you nor forsake you." },
   { category:"Strength, Courage & Comfort", ref:"Philippians 4:13", text:"I can do all things through Christ who strengthens me." },
   { category:"Strength, Courage & Comfort", ref:"Psalm 56:3", text:"When I am afraid, I put my trust in you." },
   { category:"Strength, Courage & Comfort", ref:"Psalm 23:1", text:"The Lord is my shepherd, I lack nothing." },
@@ -176,119 +183,144 @@ const VERSES = [
   { category:"Strength, Courage & Comfort", ref:"Nehemiah 8:10", text:"The joy of the Lord is your strength." },
   { category:"Strength, Courage & Comfort", ref:"Psalm 27:1", text:"The Lord is my light and my salvation—whom shall I fear?" },
   { category:"Strength, Courage & Comfort", ref:"Proverbs 18:10", text:"The name of the Lord is a fortified tower; the righteous run to it and are safe." },
+  { category:"Strength, Courage & Comfort", ref:"Hebrews 6:19", text:"We have this hope as an anchor for the soul, firm and secure." },
+  { category:"Strength, Courage & Comfort", ref:"Jeremiah 32:17", text:"Ah, Sovereign Lord... Nothing is too hard for you." },
+  { category:"Strength, Courage & Comfort", ref:"Psalm 121:2", text:"My help comes from the Lord, the Maker of heaven and earth." },
+  { category:"Strength, Courage & Comfort", ref:"Psalm 18:2", text:"The Lord is my rock, my fortress and my deliverer." },
 
-  // How to Treat Others (Kindness & Love) (10)
+  // Following Jesus & The Gospel
+  { category:"Following Jesus & The Gospel", ref:"John 8:12", text:"I am the light of the world. Whoever follows me will never walk in darkness." },
+  { category:"Following Jesus & The Gospel", ref:"Matthew 4:19", text:"Come, follow me, Jesus said, and I will send you out to fish for people." },
+  { category:"Following Jesus & The Gospel", ref:"John 10:11", text:"I am the good shepherd. The good shepherd lays down his life for the sheep." },
+  { category:"Following Jesus & The Gospel", ref:"John 14:6", text:"Jesus answered, 'I am the way and the truth and the life.'" },
+  { category:"Following Jesus & The Gospel", ref:"John 8:36", text:"So if the Son sets you free, you will be free indeed." },
+  { category:"Following Jesus & The Gospel", ref:"2 Corinthians 5:17", text:"Therefore, if anyone is in Christ, the new creation has come." },
+  { category:"Following Jesus & The Gospel", ref:"Matthew 28:19-20", text:"Therefore go and make disciples of all nations... And surely I am with you always." },
+  { category:"Following Jesus & The Gospel", ref:"John 14:2-3", text:"My Father’s house has many rooms... I am going there to prepare a place for you." },
+  { category:"Following Jesus & The Gospel", ref:"Revelation 3:20", text:"Here I am! I stand at the door and knock." },
+  { category:"Following Jesus & The Gospel", ref:"John 15:13", text:"Greater love has no one than this: to lay down one’s life for one’s friends." },
+  { category:"Following Jesus & The Gospel", ref:"Mark 10:14", text:"Let the little children come to me, and do not hinder them." },
+  { category:"Following Jesus & The Gospel", ref:"Luke 19:10", text:"For the Son of Man came to seek and to save the lost." },
+  { category:"Following Jesus & The Gospel", ref:"John 15:5", text:"I am the vine; you are the branches. If you remain in me... you will bear much fruit." },
+  { category:"Following Jesus & The Gospel", ref:"Luke 2:11", text:"Today in the town of David a Savior has been born to you; he is the Messiah, the Lord." },
+
+  // How to Treat Others (Kindness & Love)
   { category:"How to Treat Others (Kindness & Love)", ref:"Ephesians 4:32", text:"Be kind and compassionate to one another, forgiving each other." },
   { category:"How to Treat Others (Kindness & Love)", ref:"Luke 6:31", text:"Do to others as you would have them do to you." },
   { category:"How to Treat Others (Kindness & Love)", ref:"1 Corinthians 13:4", text:"Love is patient, love is kind." },
+  { category:"How to Treat Others (Kindness & Love)", ref:"Mark 12:31", text:"Love your neighbor as yourself. There is no commandment greater than these." },
   { category:"How to Treat Others (Kindness & Love)", ref:"1 Corinthians 16:14", text:"Do everything in love." },
   { category:"How to Treat Others (Kindness & Love)", ref:"Proverbs 17:17", text:"A friend loves at all times." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"Matthew 22:39", text:"Love your neighbor as yourself." },
   { category:"How to Treat Others (Kindness & Love)", ref:"1 John 3:18", text:"Dear children, let us not love with words or speech but with actions and in truth." },
   { category:"How to Treat Others (Kindness & Love)", ref:"Romans 12:10", text:"Be devoted to one another in love. Honor one another above yourselves." },
   { category:"How to Treat Others (Kindness & Love)", ref:"Galatians 6:10", text:"Therefore, as we have opportunity, let us do good to all people." },
   { category:"How to Treat Others (Kindness & Love)", ref:"Hebrews 13:16", text:"And do not forget to do good and to share with others." },
+  { category:"How to Treat Others (Kindness & Love)", ref:"Proverbs 11:25", text:"A generous person will prosper; whoever refreshes others will be refreshed." },
 
-  // Growing in Faith & Wisdom (10)
+  // Growing in Faith & Wisdom
   { category:"Growing in Faith & Wisdom", ref:"Proverbs 3:5", text:"Trust in the Lord with all your heart and lean not on your own understanding." },
   { category:"Growing in Faith & Wisdom", ref:"Psalm 119:105", text:"Your word is a lamp for my feet, a light on my path." },
-  { category:"Growing in Faith & Wisdom", ref:"Hebrews 11:1", text:"Now faith is confidence in what we hope for and assurance about what we do not see." },
+  { category:"Growing in Faith & Wisdom", ref:"Romans 8:28", text:"And we know that in all things God works for the good of those who love him." },
+  { category:"Growing in Faith & Wisdom", ref:"Colossians 2:6-7", text:"So then, just as you received Christ Jesus as Lord, continue to live your lives in him." },
   { category:"Growing in Faith & Wisdom", ref:"Proverbs 30:5", text:"Every word of God is flawless; he is a shield to those who take refuge in him." },
-  { category:"Growing in Faith & Wisdom", ref:"James 1:22", text:"Do not merely listen to the word... Do what it says." },
   { category:"Growing in Faith & Wisdom", ref:"Matthew 5:14", text:"You are the light of the world." },
   { category:"Growing in Faith & Wisdom", ref:"Colossians 3:2", text:"Set your minds on things above, not on earthly things." },
   { category:"Growing in Faith & Wisdom", ref:"Philippians 4:8", text:"Whatever is true, whatever is noble... think about such things." },
   { category:"Growing in Faith & Wisdom", ref:"Psalm 119:11", text:"I have hidden your word in my heart that I might not sin against you." },
   { category:"Growing in Faith & Wisdom", ref:"Matthew 7:7", text:"Ask and it will be given to you; seek and you will find." },
+  { category:"Growing in Faith & Wisdom", ref:"Hebrews 11:1", text:"Now faith is confidence in what we hope for and assurance about what we do not see." },
+  { category:"Growing in Faith & Wisdom", ref:"Proverbs 2:6", text:"For the Lord gives wisdom; from his mouth come knowledge and understanding." },
 
-  // Obeying & Pleasing God (10)
+  // Obeying & Pleasing God
   { category:"Obeying & Pleasing God", ref:"Colossians 3:20", text:"Children, obey your parents in everything, for this pleases the Lord." },
   { category:"Obeying & Pleasing God", ref:"Ephesians 6:1", text:"Children, obey your parents in the Lord, for this is right." },
+  { category:"Obeying & Pleasing God", ref:"1 John 5:14", text:"This is the confidence we have in approaching God: that if we ask anything according to his will, he hears us." },
   { category:"Obeying & Pleasing God", ref:"1 Thessalonians 5:17", text:"Pray continually." },
   { category:"Obeying & Pleasing God", ref:"1 Thessalonians 5:16", text:"Rejoice always." },
-  { category:"Obeying & Pleasing God", ref:"Psalm 150:6", text:"Let everything that has breath praise the Lord." },
+  { category:"Obeying & Pleasing God", ref:"1 Thessalonians 5:18", text:"Give thanks in all circumstances; for this is God’s will for you in Christ Jesus." },
   { category:"Obeying & Pleasing God", ref:"Philippians 2:14", text:"Do everything without grumbling or arguing." },
   { category:"Obeying & Pleasing God", ref:"Micah 6:8", text:"To act justly and to love mercy and to walk humbly with your God." },
   { category:"Obeying & Pleasing God", ref:"Colossians 3:23", text:"Whatever you do, work at it with all your heart, as working for the Lord." },
-  { category:"Obeying & Pleasing God", ref:"Matthew 5:16", text:"Let your light shine before others, that they may see your good deeds." },
-  { category:"Obeying & Pleasing God", ref:"Numbers 6:24", text:"The Lord bless you and keep you." },
+  { category:"Obeying & Pleasing God", ref:"1 Corinthians 10:31", text:"So whether you eat or drink or whatever you do, do it all for the glory of God." },
+  { category:"Obeying & Pleasing God", ref:"Psalm 119:34", text:"Give me understanding, so that I may keep your law and obey it with all my heart." },
 
-  // God’s Power & Creation (10)
-  { category:"God’s Power & Creation", ref:"Psalm 19:1", text:"The heavens declare the glory of God; the skies proclaim the work of his hands." },
-  { category:"God’s Power & Creation", ref:"Psalm 139:14", text:"I praise you because I am fearfully and wonderfully made." },
-  { category:"God’s Power & Creation", ref:"Jeremiah 32:17", text:"Ah, Sovereign Lord... Nothing is too hard for you." },
-  { category:"God’s Power & Creation", ref:"Psalm 147:4", text:"He determines the number of the stars and calls them each by name." },
-  { category:"God’s Power & Creation", ref:"Matthew 19:26", text:"With man this is impossible, but with God all things are possible." },
-  { category:"God’s Power & Creation", ref:"Psalm 33:6", text:"By the word of the Lord the heavens were made." },
-  { category:"God’s Power & Creation", ref:"Job 37:5", text:"God’s voice thunders in marvelous ways; he does great things beyond our understanding." },
-  { category:"God’s Power & Creation", ref:"Psalm 8:1", text:"Lord, our Lord, how majestic is your name in all the earth!" },
-  { category:"God’s Power & Creation", ref:"Isaiah 40:26", text:"Lift up your eyes and look to the heavens: Who created all these?" },
-  { category:"God’s Power & Creation", ref:"Psalm 104:24", text:"How many are your works, Lord! In wisdom you made them all." },
+  // Praise & Worship
+  { category:"Praise & Worship", ref:"Psalm 96:2", text:"Sing to the Lord, praise his name; proclaim his salvation day after day." },
+  { category:"Praise & Worship", ref:"Psalm 98:4", text:"Shout for joy to the Lord, all the earth, burst into jubilant song with music." },
+  { category:"Praise & Worship", ref:"Psalm 150:6", text:"Let everything that has breath praise the Lord." },
+  { category:"Praise & Worship", ref:"Psalm 107:1", text:"Give thanks to the Lord, for he is good; his love endures forever." },
+  { category:"Praise & Worship", ref:"Psalm 8:1", text:"Lord, our Lord, how majestic is your name in all the earth!" },
+  { category:"Praise & Worship", ref:"Psalm 118:24", text:"This is the day the Lord has made; let us rejoice and be glad in it." },
+  { category:"Praise & Worship", ref:"Psalm 147:1", text:"How good it is to sing praises to our God, how pleasant and fitting to praise him!" },
+  { category:"Praise & Worship", ref:"Psalm 63:4", text:"I will praise you as long as I live, and in your name I will lift up my hands." },
 
-  // Following Jesus (10)
-  { category:"Following Jesus", ref:"John 8:12", text:"I am the light of the world. Whoever follows me will never walk in darkness." },
-  { category:"Following Jesus", ref:"Matthew 4:19", text:"Come, follow me, Jesus said, and I will send you out to fish for people." },
-  { category:"Following Jesus", ref:"John 10:11", text:"I am the good shepherd. The good shepherd lays down his life for the sheep." },
-  { category:"Following Jesus", ref:"John 14:6", text:"Jesus answered, 'I am the way and the truth and the life.'" },
-  { category:"Following Jesus", ref:"John 15:5", text:"I am the vine; you are the branches. If you remain in me... you will bear much fruit." },
-  { category:"Following Jesus", ref:"Matthew 28:20", text:"And surely I am with you always, to the very end of the age." },
-  { category:"Following Jesus", ref:"Revelation 3:20", text:"Here I am! I stand at the door and knock." },
-  { category:"Following Jesus", ref:"John 15:13", text:"Greater love has no one than this: to lay down one’s life for one’s friends." },
-  { category:"Following Jesus", ref:"Mark 10:14", text:"Let the little children come to me, and do not hinder them." },
-  { category:"Following Jesus", ref:"Luke 19:10", text:"For the Son of Man came to seek and to save the lost." },
+  // Character & Armor of God
+  { category:"Character & Armor of God", ref:"Galatians 5:22-23", text:"But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness and self-control." },
+  { category:"Character & Armor of God", ref:"Ephesians 6:13", text:"Therefore put on the full armor of God, so that when the day of evil comes, you may be able to stand your ground." },
+  { category:"Character & Armor of God", ref:"Joshua 21:45", text:"Not one of all the Lord’s good promises to Israel failed; every one was fulfilled." },
+  { category:"Character & Armor of God", ref:"2 Corinthians 13:14", text:"May the grace of the Lord Jesus Christ, and the love of God, and the fellowship of the Holy Spirit be with you all." },
+  { category:"Character & Armor of God", ref:"1 Timothy 4:12", text:"Don’t let anyone look down on you because you are young, but set an example." },
+  { category:"Character & Armor of God", ref:"Proverbs 12:22", text:"The Lord detests lying lips, but he delights in people who are trustworthy." },
+  { category:"Character & Armor of God", ref:"Proverbs 4:23", text:"Above all else, guard your heart, for everything you do flows from it." },
+  { category:"Character & Armor of God", ref:"Proverbs 15:1", text:"A gentle answer turns away wrath, but a harsh word stirs up anger." },
+  { category:"Character & Armor of God", ref:"Romans 12:21", text:"Do not be overcome by evil, but overcome evil with good." },
+  { category:"Character & Armor of God", ref:"Psalm 51:10", text:"Create in me a pure heart, O God." },
+  { category:"Character & Armor of God", ref:"1 Thessalonians 5:11", text:"Therefore encourage one another and build each other up." },
+  { category:"Character & Armor of God", ref:"Matthew 5:9", text:"Blessed are the peacemakers, for they will be called children of God." },
+  { category:"Character & Armor of God", ref:"Matthew 5:16", text:"Let your light shine before others, that they may see your good deeds." },
+  { category:"Character & Armor of God", ref:"Proverbs 28:13", text:"The one who confesses and renounces their sins finds mercy." },
+  { category:"Character & Armor of God", ref:"Ephesians 4:29", text:"Do not let any unwholesome talk come out of your mouths, but only what is helpful for building others up." },
 
-  // Wisdom & Honesty (10)
-  { category:"Wisdom & Honesty", ref:"Proverbs 12:22", text:"The Lord detests lying lips, but he delights in people who are trustworthy." },
-  { category:"Wisdom & Honesty", ref:"Psalm 119:18", text:"Open my eyes that I may see wonderful things in your law." },
-  { category:"Wisdom & Honesty", ref:"Proverbs 4:23", text:"Above all else, guard your heart, for everything you do flows from it." },
-  { category:"Wisdom & Honesty", ref:"Proverbs 16:24", text:"Gracious words are a honeycomb, sweet to the soul and healing to the bones." },
-  { category:"Wisdom & Honesty", ref:"James 1:5", text:"If any of you lacks wisdom, you should ask God, who gives generously to all." },
-  { category:"Wisdom & Honesty", ref:"Proverbs 15:1", text:"A gentle answer turns away wrath, but a harsh word stirs up anger." },
-  { category:"Wisdom & Honesty", ref:"Psalm 34:13", text:"Keep your tongue from evil and your lips from telling lies." },
-  { category:"Wisdom & Honesty", ref:"Proverbs 20:11", text:"Even small children are known by their actions." },
-  { category:"Wisdom & Honesty", ref:"Psalm 111:10", text:"The fear of the Lord is the beginning of wisdom." },
-  { category:"Wisdom & Honesty", ref:"Proverbs 13:20", text:"Walk with the wise and become wise." },
-
-  // Peace & Contentment (10)
-  { category:"Peace & Contentment", ref:"Psalm 4:8", text:"In peace I will lie down and sleep, for you alone, Lord, make me dwell in safety." },
-  { category:"Peace & Contentment", ref:"John 14:27", text:"Peace I leave with you; my peace I give you." },
-  { category:"Peace & Contentment", ref:"Philippians 4:6", text:"Do not be anxious about anything, but in every situation, by prayer... present your requests to God." },
-  { category:"Peace & Contentment", ref:"Hebrews 13:5", text:"Be content with what you have, because God has said, 'Never will I leave you.'" },
-  { category:"Peace & Contentment", ref:"Psalm 37:4", text:"Take delight in the Lord, and he will give you the desires of your heart." },
-  { category:"Peace & Contentment", ref:"Isaiah 26:3", text:"You will keep in perfect peace those whose minds are steadfast, because they trust in you." },
-  { category:"Peace & Contentment", ref:"Psalm 118:24", text:"This is the day the Lord has made; let us rejoice and be glad in it." },
-  { category:"Peace & Contentment", ref:"1 Timothy 6:6", text:"But godliness with contentment is great gain." },
-  { category:"Peace & Contentment", ref:"Psalm 16:11", text:"You make known to me the path of life; you will fill me with joy in your presence." },
-  { category:"Peace & Contentment", ref:"Matthew 6:33", text:"But seek first his kingdom and his righteousness." },
-
-  // Serving & Character (10)
-  { category:"Serving & Character", ref:"Galatians 5:22-23", text:"But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control." },
-  { category:"Serving & Character", ref:"1 Timothy 4:12", text:"Don’t let anyone look down on you because you are young, but set an example for the believers." },
-  { category:"Serving & Character", ref:"1 Thessalonians 5:11", text:"Therefore encourage one another and build each other up." },
-  { category:"Serving & Character", ref:"Matthew 5:9", text:"Blessed are the peacemakers, for they will be called children of God." },
-  { category:"Serving & Character", ref:"Psalm 51:10", text:"Create in me a pure heart, O God, and renew a steadfast spirit within me." },
-  { category:"Serving & Character", ref:"1 Thessalonians 5:18", text:"Give thanks in all circumstances." },
-  { category:"Serving & Character", ref:"1 Corinthians 10:31", text:"So whether you eat or drink or whatever you do, do it all for the glory of God." },
-  { category:"Serving & Character", ref:"Romans 12:21", text:"Do not be overcome by evil, but overcome evil with good." },
-  { category:"Serving & Character", ref:"Matthew 5:7", text:"Blessed are the merciful, for they will be shown mercy." },
-  { category:"Serving & Character", ref:"Psalm 107:1", text:"Give thanks to the Lord, for he is good; his love endures forever." }
+  // Wisdom, Peace & Guidance
+  { category:"Wisdom, Peace & Guidance", ref:"Psalm 4:8", text:"In peace I will lie down and sleep, for you alone, Lord, make me dwell in safety." },
+  { category:"Wisdom, Peace & Guidance", ref:"John 14:27", text:"Peace I leave with you; my peace I give you." },
+  { category:"Wisdom, Peace & Guidance", ref:"Philippians 4:6", text:"Do not be anxious about anything, but in every situation, by prayer... present your requests to God." },
+  { category:"Wisdom, Peace & Guidance", ref:"Hebrews 13:5", text:"Be content with what you have, because God has said, 'Never will I leave you.'" },
+  { category:"Wisdom, Peace & Guidance", ref:"Psalm 37:4", text:"Take delight in the Lord, and he will give you the desires of your heart." },
+  { category:"Wisdom, Peace & Guidance", ref:"Isaiah 26:3", text:"You will keep in perfect peace those whose minds are steadfast." },
+  { category:"Wisdom, Peace & Guidance", ref:"Matthew 19:26", text:"With man this is impossible, but with God all things are possible." },
+  { category:"Wisdom, Peace & Guidance", ref:"Proverbs 16:24", text:"Gracious words are a honeycomb, sweet to the soul and healing to the bones." },
+  { category:"Wisdom, Peace & Guidance", ref:"James 1:5", text:"If any of you lacks wisdom, you should ask God, who gives generously to all." },
+  { category:"Wisdom, Peace & Guidance", ref:"Psalm 34:13", text:"Keep your tongue from evil and your lips from telling lies." },
+  { category:"Wisdom, Peace & Guidance", ref:"Proverbs 20:11", text:"Even small children are known by their actions." },
+  { category:"Wisdom, Peace & Guidance", ref:"Psalm 111:10", text:"The fear of the Lord is the beginning of wisdom." },
+  { category:"Wisdom, Peace & Guidance", ref:"Proverbs 13:20", text:"Walk with the wise and become wise." },
+  { category:"Wisdom, Peace & Guidance", ref:"Matthew 6:33", text:"But seek first his kingdom and his righteousness." },
+  { category:"Wisdom, Peace & Guidance", ref:"Job 37:5", text:"God’s voice thunders in marvelous ways; he does great things beyond our understanding." },
+  { category:"Wisdom, Peace & Guidance", ref:"Matthew 5:7", text:"Blessed are the merciful, for they will be shown mercy." },
+  { category:"Wisdom, Peace & Guidance", ref:"Numbers 6:24", text:"The Lord bless you and keep you." },
+  { category:"Wisdom, Peace & Guidance", ref:"Proverbs 14:29", text:"Whoever is patient has great understanding, but one who is quick-tempered displays folly." },
+  { category:"Wisdom, Peace & Guidance", ref:"Psalm 32:8", text:"I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you." },
+  { category:"Wisdom, Peace & Guidance", ref:"Proverbs 3:6", text:"In all your ways submit to him, and he will make your paths straight." },
+  { category:"Wisdom, Peace & Guidance", ref:"Psalm 34:1", text:"I will extol the Lord at all times; his praise will always be on my lips." },
+  { category:"Wisdom, Peace & Guidance", ref:"1 Peter 3:8", text:"Finally, all of you, be like-minded, be sympathetic, love one another, be compassionate and humble." },
+  { category:"Wisdom, Peace & Guidance", ref:"Psalm 119:10", text:"I seek you with all my heart; do not let me stray from your commands." }
 ];
 
 /* ===============================
-   Kid-friendly explanations per category
+   Kid-friendly explanations (LCMS-aligned)
    =============================== */
 const KID_LINES = {
-  "Knowing God’s Love & Character": "God loves you, sees you, and is good to you. You can trust His heart.",
-  "Strength, Courage & Comfort": "When you feel scared or worried, God is with you and will help you.",
-  "How to Treat Others (Kindness & Love)": "Because Jesus loves you, you can love others with your words and actions.",
-  "Growing in Faith & Wisdom": "God’s Word helps you know what’s true and guides you like a light.",
-  "Obeying & Pleasing God": "God loves you first—then He teaches you how to live. Obeying can be a way to say “thank you.”",
-  "God’s Power & Creation": "God made the world and He made you on purpose. Nothing is too hard for Him!",
-  "Following Jesus": "Jesus is your Savior and Shepherd. Following Him is the safest place to be.",
-  "Wisdom & Honesty": "God helps your words be truthful and kind, and your choices be wise.",
-  "Peace & Contentment": "God can give your heart peace—even when life feels loud.",
-  "Serving & Character": "God grows good fruit in you—so you can shine for Jesus and do good with joy."
+  "Knowing God’s Love & Creation":
+    "God made you on purpose, loves you first, and sees you always. You can trust Him.",
+  "Strength, Courage & Comfort":
+    "When you feel scared or worried, God promises to be with you and help you.",
+  "Following Jesus & The Gospel":
+    "Jesus is your Savior. He forgives you and stays with you—because He loves you.",
+  "How to Treat Others (Kindness & Love)":
+    "Because Jesus is kind to you, you can be kind to others with your words and actions.",
+  "Growing in Faith & Wisdom":
+    "God’s Word teaches you what’s true and helps you know the way to go.",
+  "Obeying & Pleasing God":
+    "God loves you first. Then He teaches you how to live—and you can say 'thank you' with your choices.",
+  "Praise & Worship":
+    "God is worthy of praise! We can thank Him, sing, and celebrate what He has done.",
+  "Character & Armor of God":
+    "God helps you stand strong. He grows good fruit in you and uses your life to bless others.",
+  "Wisdom, Peace & Guidance":
+    "God can give you peace and help you make wise choices. You can bring Him your worries."
 };
+
 function kidLineFor(category){
   return KID_LINES[category] || "God’s Word is a gift—let it stick in your heart today.";
 }
@@ -396,4 +428,3 @@ window.addEventListener("pageshow", (e) => {
 </script>
 </body>
 </html>
-
