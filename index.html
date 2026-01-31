@@ -108,7 +108,7 @@
       border-radius: 14px;
       font-size: 15px;
       line-height: 1.45;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     button{
@@ -123,6 +123,17 @@
       cursor:pointer;
     }
     button:active{ transform: scale(.98); }
+
+    .tip{
+      margin-top:10px;
+      font-size:12px;
+      line-height:1.35;
+      color:#5b5b5b;
+      text-align:center;
+      display:none;
+    }
+    .tip a{ color: var(--blue); font-weight:800; text-decoration:none; }
+    .tip a:hover{ text-decoration:underline; }
   </style>
 </head>
 
@@ -144,7 +155,12 @@
       <div id="reference" class="reference"></div>
       <div id="kidLine" class="kidLine"></div>
 
-      <button onclick="readAloud()">Read Aloud</button>
+      <button id="readBtn" onclick="readAloud()">Read Aloud</button>
+
+      <!-- Android-only tip (hidden on iPhone/desktop) -->
+      <div id="androidTip" class="tip">
+        Tip for Android: update <strong>Speech Services by Google</strong> in the Play Store for a smoother voice.
+      </div>
     </div>
   </div>
 
@@ -351,50 +367,103 @@ function showVerse(v){
 }
 
 /* ===============================
-   Read Aloud: prefer normal female American voice
+   Android-only tip display
    =============================== */
-function pickFemaleAmericanVoice(){
-  const voices = speechSynthesis.getVoices() || [];
+function isAndroid(){
+  const ua = navigator.userAgent || "";
+  return /Android/i.test(ua);
+}
+if (isAndroid()) {
+  const tip = document.getElementById("androidTip");
+  if (tip) tip.style.display = "block";
+}
+
+/* ===============================
+   NATURAL-SOUNDING READ ALOUD
+   =============================== */
+function getVoicesSafe() {
+  try { return speechSynthesis.getVoices() || []; }
+  catch { return []; }
+}
+
+function pickBestVoice() {
+  const voices = getVoicesSafe();
   if (!voices.length) return null;
+
+  const qualityHints = ["enhanced","premium","natural","neural","wavenet","siri","google"];
+  const avoidHints   = ["compact","espeak","festival","mbrola"];
+  const femaleHints  = ["samantha","ava","victoria","allison","zoe","emma","olivia","tessa","karen",
+                        "moira","joanna","zira","susan","lisa","nicole","serena","aria"];
 
   const isEnUS = v => (v.lang || "").toLowerCase().includes("en-us");
   const isEn   = v => (v.lang || "").toLowerCase().startsWith("en");
 
-  const femaleHints = ["samantha","ava","victoria","allison","zoe","emma","olivia","tessa","karen","moira","joanna","zira","susan","lisa","nicole"];
-  const qualityHints = ["premium","enhanced","natural","neural","siri"];
-
-  function score(v){
+  function score(v) {
     const name = (v.name || "").toLowerCase();
+    const lang = (v.lang || "").toLowerCase();
     let s = 0;
-    if (isEnUS(v)) s += 200;
-    else if (isEn(v)) s += 80;
 
-    if (femaleHints.some(h => name.includes(h))) s += 30;
-    if (qualityHints.some(h => name.includes(h))) s += 20;
-    if (name.includes("compact")) s -= 20;
+    if (isEnUS(v)) s += 300;
+    else if (isEn(v)) s += 120;
+
+    if (qualityHints.some(h => name.includes(h))) s += 160;
+    if (femaleHints.some(h => name.includes(h))) s += 60;
+
+    if (avoidHints.some(h => name.includes(h))) s -= 240;
+    if (name.includes("compact")) s -= 120;
+
+    if (v.default) s += 15;
+
     return s;
   }
 
-  return voices.slice().sort((a,b)=>score(b)-score(a))[0] || null;
+  return voices.slice().sort((a,b) => score(b) - score(a))[0] || null;
 }
 
-function readAloud(){
+function makeSpeakableText(text) {
+  let t = (text || "").replace(/\s*\.\.\.\s*/g, "… ");
+  t = t.replace(/—/g, " — ").replace(/\s+/g, " ").trim();
+  return t;
+}
+
+function speakChunk(text, voice, opts) {
+  const u = new SpeechSynthesisUtterance(makeSpeakableText(text));
+  if (voice) u.voice = voice;
+  u.rate = opts?.rate ?? 0.90;
+  u.pitch = opts?.pitch ?? 1.02;
+  u.volume = opts?.volume ?? 1;
+  speechSynthesis.speak(u);
+  return u;
+}
+
+function readAloud() {
   if (!current) return;
 
-  const utter = new SpeechSynthesisUtterance(`${current.text} … ${current.ref}`);
-  const v = pickFemaleAmericanVoice();
-  if (v) utter.voice = v;
-
-  utter.rate = 0.95;
-  utter.pitch = 1.0;
-  utter.volume = 1;
-
   speechSynthesis.cancel();
-  speechSynthesis.speak(utter);
+
+  const voice = pickBestVoice();
+
+  // Verse first
+  const u1 = speakChunk(current.text, voice, {
+    rate: 0.90,
+    pitch: 1.03,
+    volume: 1
+  });
+
+  // Reference after a short pause (sounds more human)
+  u1.onend = () => {
+    setTimeout(() => {
+      speakChunk(current.ref, voice, {
+        rate: 0.92,
+        pitch: 1.00,
+        volume: 1
+      });
+    }, 320);
+  };
 }
 
-// preload voices
-function initVoices(){ speechSynthesis.getVoices(); }
+// preload voices (especially helps Safari/iOS)
+function initVoices(){ getVoicesSafe(); }
 if ("speechSynthesis" in window){
   initVoices();
   speechSynthesis.onvoiceschanged = initVoices;
@@ -428,3 +497,4 @@ window.addEventListener("pageshow", (e) => {
 </script>
 </body>
 </html>
+
