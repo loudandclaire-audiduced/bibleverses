@@ -3,167 +3,219 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tap for a Bible Verse</title>
+  <title>Tap for God’s Word</title>
+
   <style>
     :root{
-      --bg:#f6f7fb;
+      /* Loud & Claire brand colors */
+      --pink:#ef6ea9;
+      --teal:#0c738f;
+      --mint:#39bb90;
+      --yellow:#f4dd7c;
+
+      --bg:#f9fafb;
       --card:#ffffff;
-      --text:#15171a;
-      --muted:#5b6069;
-      --accent:#1a73e8;
-      --accent2:#ff4fd8;
-      --accent3:#39d0ff;
-      --soft:#fff7d6;
-      --softBorder:#ffe08a;
+      --text:#1a1a1a;
+      --muted:#5f6368;
       --radius:18px;
     }
+
     *{ box-sizing:border-box; }
+
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
     }
+
     .wrap{
-      max-width: 760px;
+      max-width: 820px;
       margin: 0 auto;
       padding: 18px;
     }
-    .brand{
+
+    .header{
       display:flex;
       align-items:center;
-      gap:12px;
-      margin: 10px 0 16px;
+      gap:14px;
+      margin: 10px 0 18px;
     }
-    .dot{
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent2), var(--accent3));
-      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+
+    .logoWrap{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:64px;
+      height:64px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(239,110,169,.20), rgba(57,187,144,.18));
+      border: 1px solid rgba(12,115,143,.18);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.08);
       flex: 0 0 auto;
+      overflow:hidden;
     }
+
+    .logoWrap img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+    }
+
+    .dot{
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--mint));
+      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+      margin-right: 10px;
+      display:inline-block;
+    }
+
     h1{
-      font-size: 22px;
+      font-size: 26px;
       margin: 0;
       line-height: 1.2;
+      display:flex;
+      align-items:center;
     }
+
     .sub{
       margin: 6px 0 0;
       color: var(--muted);
       font-size: 14px;
     }
+
+    .tagline{
+      margin-top: 4px;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--teal);
+      letter-spacing: .2px;
+    }
+
     .card{
       background: var(--card);
       border-radius: var(--radius);
-      padding: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.07);
-      border: 1px solid rgba(0,0,0,0.06);
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.05);
     }
-    .metaRow{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
-    }
+
     .chip{
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      background:#eef2ff;
-      color:#243b7b;
-      border:1px solid #dce5ff;
-      padding:8px 10px;
+      background: var(--yellow);
+      color:#5b4700;
       border-radius: 999px;
+      padding: 8px 12px;
       font-size: 12px;
-      font-weight: 700;
-      line-height: 1;
+      font-weight: 900;
+      margin-bottom: 12px;
     }
-    .tiny{
-      font-size: 12px;
-      color: var(--muted);
-    }
+
     .verseText{
       font-size: 22px;
       line-height: 1.35;
-      margin: 8px 0 12px;
+      margin: 6px 0 12px;
     }
+
     .ref{
-      font-weight: 800;
+      font-weight: 900;
       font-size: 14px;
-      color: #333;
-      margin: 0 0 12px;
+      color: var(--teal);
+      margin: 0 0 14px;
     }
+
     .kidLine{
-      background: var(--soft);
-      border: 1px solid var(--softBorder);
-      padding: 12px;
+      background: #fff8db;
+      border: 1px solid var(--yellow);
+      padding: 14px;
       border-radius: 14px;
       font-size: 15px;
-      line-height: 1.35;
+      line-height: 1.4;
       margin: 12px 0 0;
     }
+
     .btnRow{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:14px;
+      margin-top:16px;
     }
+
     button{
       appearance:none;
       border:0;
       border-radius: 14px;
-      padding: 12px 14px;
-      font-weight: 800;
+      padding: 12px 16px;
+      font-weight: 900;
       cursor:pointer;
-      background: var(--accent);
+      background: var(--pink);
       color: white;
       font-size: 14px;
     }
+
     button.secondary{
-      background:#eef2ff;
-      color:#243b7b;
+      background: var(--mint);
+      color: #0b3d32;
     }
+
     button.ghost{
       background: transparent;
-      color: var(--accent);
-      border: 1px solid #cfe0ff;
+      color: var(--teal);
+      border: 2px solid var(--teal);
     }
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: rgba(26,26,26,0.92);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+    .toast.show{ opacity: 1; }
+
     .footer{
-      margin-top: 16px;
+      margin-top: 18px;
       font-size: 12px;
       color: #777;
       text-align:center;
     }
-    .divider{
-      height:1px;
-      background: rgba(0,0,0,0.06);
-      margin: 14px 0;
-    }
-    .smallNote{
-      font-size:12px;
-      color:#666;
-      line-height: 1.35;
+
+    @media (max-width:420px){
+      .logoWrap{ width:56px; height:56px; }
+      h1{ font-size:24px; }
+      .verseText{ font-size:20px; }
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <div class="brand">
-      <div class="dot"></div>
+    <div class="header">
+      <div class="logoWrap">
+        <!-- Put logo.png in the SAME folder as index.html -->
+        <img src="logo.png" alt="Loud & Claire logo" />
+      </div>
+
       <div>
-        <h1>Tap for a Bible Verse</h1>
-        <p class="sub">Tap your wristband to get a verse + a kid-friendly message.</p>
+        <h1><span class="dot"></span>Tap for God’s Word</h1>
+        <p class="sub">Tap your wristband for a Bible verse and a kid-friendly message.</p>
+        <div class="tagline">Proclaim It Loud and Claire</div>
       </div>
     </div>
 
     <div class="card">
-      <div class="metaRow">
-        <div class="chip" id="categoryChip">Verse</div>
-        <div class="tiny" id="counterNote"></div>
-      </div>
+      <div class="chip" id="categoryChip">Verse</div>
 
       <p id="verseText" class="verseText"></p>
       <p id="verseRef" class="ref"></p>
@@ -171,392 +223,210 @@
       <div id="kidLine" class="kidLine"></div>
 
       <div class="btnRow">
-        <button id="newBtn" type="button">New Verse</button>
-        <button id="readBtn" class="secondary" type="button">Read Aloud</button>
-        <button id="copyBtn" class="ghost" type="button">Copy</button>
-      </div>
-
-      <div class="divider"></div>
-      <div class="smallNote">
-        Tip: Want a new one? Tap “New Verse” (or just tap your wristband again later).
+        <button id="newBtn">New Verse</button>
+        <button id="readBtn" class="secondary">Read Aloud</button>
+        <button id="copyBtn" class="ghost">Copy</button>
       </div>
     </div>
 
-    <div class="footer">Made for a quick, kid-friendly moment with God’s Word.</div>
+    <div class="footer">Hear it. Believe it. Proclaim it.</div>
   </div>
 
-  <script>
-    // Uses ONLY the verse text you provided.
-    // You can edit kid lines anytime.
-
-    const VERSES = [
-      { ref:"1 John 4:8", text:"God is love.", cat:"God’s Love",
-        kid:"God doesn’t just *have* love—God *is* love. That means He loves you every day." },
-
-      { ref:"Genesis 1:1", text:"In the beginning God created the heavens and the earth.", cat:"God the Creator",
-        kid:"God made everything—so your life is not an accident. You belong to Him." },
-
-      { ref:"John 3:16", text:"For God so loved the world that he gave his one and only Son.", cat:"Jesus & Salvation",
-        kid:"God’s love is so big He gave Jesus for you. That’s the best gift ever." },
-
-      { ref:"Psalm 145:9", text:"The Lord is good to all.", cat:"God’s Goodness",
-        kid:"God is good—always. Even on hard days, He is still good to you." },
-
-      { ref:"1 John 4:19", text:"We love because he first loved us.", cat:"God’s Love",
-        kid:"You can love others because God loved you first. His love starts it all." },
-
-      { ref:"Genesis 16:13", text:"You are the God who sees me.", cat:"God is With You",
-        kid:"God sees you when you’re happy, sad, or quiet. You are never invisible to Him." },
-
-      { ref:"James 1:17", text:"Every good and perfect gift is from above.", cat:"Gratitude",
-        kid:"Good gifts come from God. When something good happens—thank Him!" },
-
-      { ref:"Psalm 100:3", text:"Know that the Lord is God. It is he who made us, and we are his.", cat:"Identity",
-        kid:"You belong to God. That means you’re cared for and loved on purpose." },
-
-      { ref:"Isaiah 40:28", text:"The Lord is the everlasting God, the Creator of the ends of the earth.", cat:"God the Creator",
-        kid:"God never gets tired and never runs out of power. He can handle anything." },
-
-      { ref:"Psalm 136:1", text:"Give thanks to the Lord, for he is good. His love endures forever.", cat:"Gratitude",
-        kid:"God’s love doesn’t run out. Not today. Not tomorrow. Never." },
-
-      { ref:"Joshua 1:9", text:"Be strong and courageous. Do not be afraid... for the Lord your God will be with you.", cat:"Courage",
-        kid:"You can be brave because God is with you. You don’t have to face anything alone." },
-
-      { ref:"Philippians 4:13", text:"I can do all things through Christ who strengthens me.", cat:"Strength",
-        kid:"Jesus gives you strength—especially when you feel small or nervous." },
-
-      { ref:"Psalm 56:3", text:"When I am afraid, I put my trust in you.", cat:"Peace",
-        kid:"When fear shows up, you can hand it to God. Trust Him like a strong anchor." },
-
-      { ref:"Psalm 23:1", text:"The Lord is my shepherd, I lack nothing.", cat:"God is With You",
-        kid:"God guides you like a shepherd. He takes care of what you truly need." },
-
-      { ref:"1 Peter 5:7", text:"Cast all your anxiety on him because he cares for you.", cat:"Peace",
-        kid:"God cares about your worries. You can ‘toss’ them to Him in prayer." },
-
-      { ref:"Isaiah 41:10", text:"So do not fear, for I am with you.", cat:"Peace",
-        kid:"God says, ‘I’m with you.’ That’s a promise you can hold onto." },
-
-      { ref:"Psalm 46:1", text:"God is our refuge and strength, an ever-present help in trouble.", cat:"Help",
-        kid:"God is a safe place to run when life feels scary or messy." },
-
-      { ref:"Nehemiah 8:10", text:"The joy of the Lord is your strength.", cat:"Joy",
-        kid:"God’s joy can give you strength even when you’re tired or grumpy." },
-
-      { ref:"Psalm 27:1", text:"The Lord is my light and my salvation—whom shall I fear?", cat:"Courage",
-        kid:"When God is your light, darkness doesn’t get the final say." },
-
-      { ref:"Proverbs 18:10", text:"The name of the Lord is a fortified tower; the righteous run to it and are safe.", cat:"Help",
-        kid:"God is like a strong fortress. You can run to Him anytime." },
-
-      { ref:"Ephesians 4:32", text:"Be kind and compassionate to one another, forgiving each other.", cat:"Kindness",
-        kid:"Kindness and forgiveness are powerful. They show what God’s love looks like." },
-
-      { ref:"Luke 6:31", text:"Do to others as you would have them do to you.", cat:"Kindness",
-        kid:"If you wouldn’t want it done to you, don’t do it to someone else. Choose kindness." },
-
-      { ref:"1 Corinthians 13:4", text:"Love is patient, love is kind.", cat:"Love in Action",
-        kid:"Love looks like patience and kindness—especially when it’s hard." },
-
-      { ref:"1 Corinthians 16:14", text:"Do everything in love.", cat:"Love in Action",
-        kid:"Even small things—sharing, helping, speaking—can be done with love." },
-
-      { ref:"Proverbs 17:17", text:"A friend loves at all times.", cat:"Friendship",
-        kid:"A good friend doesn’t disappear when things get hard. Love stays." },
-
-      { ref:"Matthew 22:39", text:"Love your neighbor as yourself.", cat:"Love in Action",
-        kid:"Neighbors can be anyone around you. Love them the way you’d want to be loved." },
-
-      { ref:"1 John 3:18", text:"Dear children, let us not love with words or speech but with actions and in truth.", cat:"Love in Action",
-        kid:"Love is more than saying it. Love is showing it—helping, sharing, caring." },
-
-      { ref:"Romans 12:10", text:"Be devoted to one another in love. Honor one another above yourselves.", cat:"Love in Action",
-        kid:"Treat others like they matter—because they do. Honor is love with respect." },
-
-      { ref:"Galatians 6:10", text:"Therefore, as we have opportunity, let us do good to all people.", cat:"Serving",
-        kid:"When you see a chance to do good—take it. That’s a Jesus kind of move." },
-
-      { ref:"Hebrews 13:16", text:"And do not forget to do good and to share with others.", cat:"Serving",
-        kid:"Sharing isn’t small. God notices when you share and help." },
-
-      { ref:"Proverbs 3:5", text:"Trust in the Lord with all your heart and lean not on your own understanding.", cat:"Trust",
-        kid:"You don’t have to understand everything to trust God. He knows the way." },
-
-      { ref:"Psalm 119:105", text:"Your word is a lamp for my feet, a light on my path.", cat:"God’s Word",
-        kid:"God’s Word helps you know the next right step—like a flashlight in the dark." },
-
-      { ref:"Hebrews 11:1", text:"Now faith is confidence in what we hope for and assurance about what we do not see.", cat:"Faith",
-        kid:"Faith means trusting God even when you can’t see what’s next." },
-
-      { ref:"Proverbs 30:5", text:"Every word of God is flawless; he is a shield to those who take refuge in him.", cat:"God’s Word",
-        kid:"God’s Word is trustworthy. And God protects you like a shield." },
-
-      { ref:"James 1:22", text:"Do not merely listen to the word... Do what it says.", cat:"Obedience",
-        kid:"God’s Word isn’t just for hearing—it’s for living. One small action matters!" },
-
-      { ref:"Matthew 5:14", text:"You are the light of the world.", cat:"Shine",
-        kid:"When you belong to Jesus, your life can shine with kindness and truth." },
-
-      { ref:"Colossians 3:2", text:"Set your minds on things above, not on earthly things.", cat:"Focus",
-        kid:"When your mind feels crowded, look up. God helps you focus on what matters most." },
-
-      { ref:"Philippians 4:8", text:"Whatever is true, whatever is noble... think about such things.", cat:"Focus",
-        kid:"Fill your mind with good things—true things—God things." },
-
-      { ref:"Psalm 119:11", text:"I have hidden your word in my heart that I might not sin against you.", cat:"God’s Word",
-        kid:"Putting God’s Word in your heart helps guide your choices." },
-
-      { ref:"Matthew 7:7", text:"Ask and it will be given to you; seek and you will find.", cat:"Prayer",
-        kid:"You can talk to God. Ask Him, and keep seeking—He hears you." },
-
-      { ref:"Colossians 3:20", text:"Children, obey your parents in everything, for this pleases the Lord.", cat:"Obedience",
-        kid:"Obeying can be worship. It’s a way to honor God, too." },
-
-      { ref:"Ephesians 6:1", text:"Children, obey your parents in the Lord, for this is right.", cat:"Obedience",
-        kid:"God gives parents to care for you. Listening can be a loving choice." },
-
-      { ref:"1 Thessalonians 5:17", text:"Pray continually.", cat:"Prayer",
-        kid:"Prayer doesn’t have to be fancy. You can talk to God all day long." },
-
-      { ref:"1 Thessalonians 5:16", text:"Rejoice always.", cat:"Joy",
-        kid:"Joy is different than ‘everything is perfect.’ Joy is knowing God is with you." },
-
-      { ref:"Psalm 150:6", text:"Let everything that has breath praise the Lord.", cat:"Worship",
-        kid:"If you’re breathing, you can praise God! Singing counts. Smiling counts. Thanking counts." },
-
-      { ref:"Philippians 2:14", text:"Do everything without grumbling or arguing.", cat:"Attitude",
-        kid:"God can help your attitude. Try switching grumbles into prayers." },
-
-      { ref:"Micah 6:8", text:"To act justly and to love mercy and to walk humbly with your God.", cat:"Character",
-        kid:"Do what’s right, be kind, and walk with God—one day at a time." },
-
-      { ref:"Colossians 3:23", text:"Whatever you do, work at it with all your heart, as working for the Lord.", cat:"Work",
-        kid:"Homework, chores, practice—do it like you’re doing it for Jesus." },
-
-      { ref:"Matthew 5:16", text:"Let your light shine before others, that they may see your good deeds.", cat:"Shine",
-        kid:"When you do good, it can help others see God’s love in real life." },
-
-      { ref:"Numbers 6:24", text:"The Lord bless you and keep you.", cat:"Blessing",
-        kid:"God blesses you and holds you close. You are kept by Him." },
-
-      { ref:"Psalm 19:1", text:"The heavens declare the glory of God; the skies proclaim the work of his hands.", cat:"God the Creator",
-        kid:"The sky is like God’s artwork. Creation reminds us God is amazing." },
-
-      { ref:"Psalm 139:14", text:"I praise you because I am fearfully and wonderfully made.", cat:"Identity",
-        kid:"God made you wonderfully. You are not ‘too much’ or ‘not enough.’" },
-
-      { ref:"Jeremiah 32:17", text:"Ah, Sovereign Lord... Nothing is too hard for you.", cat:"God’s Power",
-        kid:"Nothing is too hard for God—not your problem, not your fear, not your future." },
-
-      { ref:"Psalm 147:4", text:"He determines the number of the stars and calls them each by name.", cat:"God the Creator",
-        kid:"If God knows every star, He definitely knows you—and loves you." },
-
-      { ref:"Matthew 19:26", text:"With man this is impossible, but with God all things are possible.", cat:"God’s Power",
-        kid:"When something feels impossible, remember: God can do big things." },
-
-      { ref:"Psalm 33:6", text:"By the word of the Lord the heavens were made.", cat:"God the Creator",
-        kid:"God’s words are powerful. He made everything—and His promises are strong." },
-
-      { ref:"Job 37:5", text:"God’s voice thunders in marvelous ways; he does great things beyond our understanding.", cat:"God’s Power",
-        kid:"God does amazing things—even when we don’t understand how." },
-
-      { ref:"Psalm 8:1", text:"Lord, our Lord, how majestic is your name in all the earth!", cat:"Worship",
-        kid:"God is awesome. His name is bigger than everything else." },
-
-      { ref:"Isaiah 40:26", text:"Lift up your eyes and look to the heavens: Who created all these?", cat:"God the Creator",
-        kid:"Look up! Creation points to the Creator—God made it all." },
-
-      { ref:"Psalm 104:24", text:"How many are your works, Lord! In wisdom you made them all.", cat:"God the Creator",
-        kid:"God is wise, and His creation is full of wonder. You can trust His wisdom." },
-
-      { ref:"John 8:12", text:"I am the light of the world. Whoever follows me will never walk in darkness.", cat:"Jesus",
-        kid:"Jesus is your light. Following Him means you never have to be stuck in darkness." },
-
-      { ref:"Matthew 4:19", text:"Come, follow me, Jesus said, and I will send you out to fish for people.", cat:"Following Jesus",
-        kid:"Jesus invites you to follow Him—and share His love with others." },
-
-      { ref:"John 10:11", text:"I am the good shepherd. The good shepherd lays down his life for the sheep.", cat:"Jesus",
-        kid:"Jesus is the Good Shepherd. He gave His life for you because He loves you." },
-
-      { ref:"John 14:6", text:"Jesus answered, 'I am the way and the truth and the life.'", cat:"Jesus",
-        kid:"Jesus is the way to God. He tells the truth. He gives real life." },
-
-      { ref:"John 15:5", text:"I am the vine; you are the branches. If you remain in me... you will bear much fruit.", cat:"Following Jesus",
-        kid:"Staying close to Jesus helps your life grow good things—like kindness and love." },
-
-      { ref:"Matthew 28:20", text:"And surely I am with you always, to the very end of the age.", cat:"God is With You",
-        kid:"Jesus is with you always—at school, at home, and everywhere." },
-
-      { ref:"Revelation 3:20", text:"Here I am! I stand at the door and knock.", cat:"Jesus",
-        kid:"Jesus wants to be close to you. You can talk to Him and trust Him." },
-
-      { ref:"John 15:13", text:"Greater love has no one than this: to lay down one’s life for one’s friends.", cat:"Jesus & Salvation",
-        kid:"Jesus showed the greatest love by giving His life for you—His friend." },
-
-      { ref:"Mark 10:14", text:"Let the little children come to me, and do not hinder them.", cat:"Jesus Loves Kids",
-        kid:"Jesus wants kids close to Him. You are welcome with Jesus." },
-
-      { ref:"Luke 19:10", text:"For the Son of Man came to seek and to save the lost.", cat:"Jesus & Salvation",
-        kid:"Jesus came to find and save people—because He loves them. That includes you." },
-
-      { ref:"Proverbs 12:22", text:"The Lord detests lying lips, but he delights in people who are trustworthy.", cat:"Truth",
-        kid:"God loves truth. Being honest is a way to love others well." },
-
-      { ref:"Psalm 119:18", text:"Open my eyes that I may see wonderful things in your law.", cat:"God’s Word",
-        kid:"You can ask God to help you understand His Word. He loves teaching you." },
-
-      { ref:"Proverbs 4:23", text:"Above all else, guard your heart, for everything you do flows from it.", cat:"Wisdom",
-        kid:"Protect what you let into your heart—because it shapes your choices." },
-
-      { ref:"Proverbs 16:24", text:"Gracious words are a honeycomb, sweet to the soul and healing to the bones.", cat:"Words",
-        kid:"Kind words can heal. Your words can be sweet and helpful." },
-
-      { ref:"James 1:5", text:"If any of you lacks wisdom, you should ask God, who gives generously to all.", cat:"Wisdom",
-        kid:"If you don’t know what to do—ask God. He loves giving wisdom." },
-
-      { ref:"Proverbs 15:1", text:"A gentle answer turns away wrath, but a harsh word stirs up anger.", cat:"Words",
-        kid:"Gentle words can calm big feelings—yours and someone else’s." },
-
-      { ref:"Psalm 34:13", text:"Keep your tongue from evil and your lips from telling lies.", cat:"Truth",
-        kid:"God helps you speak in a good way—truthful, kind, and calm." },
-
-      { ref:"Proverbs 20:11", text:"Even small children are known by their actions.", cat:"Character",
-        kid:"Your choices show what’s in your heart. Small actions matter." },
-
-      { ref:"Psalm 111:10", text:"The fear of the Lord is the beginning of wisdom.", cat:"Wisdom",
-        kid:"Respecting God is the start of being truly wise." },
-
-      { ref:"Proverbs 13:20", text:"Walk with the wise and become wise.", cat:"Friendship",
-        kid:"Friends shape you. Choose friends who help you do what’s right." },
-
-      { ref:"Psalm 4:8", text:"In peace I will lie down and sleep, for you alone, Lord, make me dwell in safety.", cat:"Peace",
-        kid:"God can help your heart feel safe—even at bedtime." },
-
-      { ref:"John 14:27", text:"Peace I leave with you; my peace I give you.", cat:"Peace",
-        kid:"Jesus gives a special peace that stays with you." },
-
-      { ref:"Philippians 4:6", text:"Do not be anxious about anything, but in every situation, by prayer... present your requests to God.", cat:"Prayer",
-        kid:"When you worry, pray. God invites you to bring every request to Him." },
-
-      { ref:"Hebrews 13:5", text:"Be content with what you have, because God has said, 'Never will I leave you.'", cat:"God is With You",
-        kid:"You can be content because God won’t leave you. He stays." },
-
-      { ref:"Psalm 37:4", text:"Take delight in the Lord, and he will give you the desires of your heart.", cat:"Joy",
-        kid:"When you love being with God, He shapes your heart in good ways." },
-
-      { ref:"Isaiah 26:3", text:"You will keep in perfect peace those whose minds are steadfast, because they trust in you.", cat:"Peace",
-        kid:"Trusting God helps your mind feel steady and peaceful." },
-
-      { ref:"Psalm 118:24", text:"This is the day the Lord has made; let us rejoice and be glad in it.", cat:"Joy",
-        kid:"Today is a gift from God. You can find reasons to rejoice." },
-
-      { ref:"1 Timothy 6:6", text:"But godliness with contentment is great gain.", cat:"Contentment",
-        kid:"Being close to God and being thankful is worth more than ‘more stuff.’" },
-
-      { ref:"Psalm 16:11", text:"You make known to me the path of life; you will fill me with joy in your presence.", cat:"Joy",
-        kid:"God shows you the way and fills your heart with joy when you’re with Him." },
-
-      { ref:"Matthew 6:33", text:"But seek first his kingdom and his righteousness.", cat:"Focus",
-        kid:"Put God first. He helps you with everything else." },
-
-      // Serving & Character
-      { ref:"Galatians 5:22-23", text:"But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control.", cat:"Fruit of the Spirit",
-        kid:"The Holy Spirit grows good things in you—like kindness, love, and self-control." },
-
-      { ref:"1 Timothy 4:12", text:"Don’t let anyone look down on you because you are young, but set an example for the believers.", cat:"Courage",
-        kid:"Even kids can set a great example. Your faith can shine big." },
-
-      { ref:"1 Thessalonians 5:11", text:"Therefore encourage one another and build each other up.", cat:"Encouragement",
-        kid:"Your words can build people up. Be an encourager today." },
-
-      { ref:"Matthew 5:9", text:"Blessed are the peacemakers, for they will be called children of God.", cat:"Peacemaking",
-        kid:"Making peace is brave. God loves peacemakers." },
-
-      { ref:"Psalm 51:10", text:"Create in me a pure heart, O God, and renew a steadfast spirit within me.", cat:"Prayer",
-        kid:"You can ask God to clean your heart and help you start fresh." },
-
-      { ref:"1 Thessalonians 5:18", text:"Give thanks in all circumstances.", cat:"Gratitude",
-        kid:"Even when life is hard, you can thank God because He is still good." },
-
-      { ref:"1 Corinthians 10:31", text:"So whether you eat or drink or whatever you do, do it all for the glory of God.", cat:"Worship",
-        kid:"Even normal things—like eating—can be done to honor God." },
-
-      { ref:"Romans 12:21", text:"Do not be overcome by evil, but overcome evil with good.", cat:"Character",
-        kid:"When something wrong happens, choose good. God helps you do that." },
-
-      { ref:"Matthew 5:7", text:"Blessed are the merciful, for they will be shown mercy.", cat:"Mercy",
-        kid:"Mercy means kindness when someone messes up—because God has been merciful to you." }
-    ];
-
-    // Shuffle bag so you don’t get repeats until all are used
-    let bag = [];
-    let shownCount = 0;
-
-    function refillBag(){
-      bag = VERSES.map((_, i) => i);
-      for (let i = bag.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [bag[i], bag[j]] = [bag[j], bag[i]];
-      }
+  <div id="toast" class="toast">Copied!</div>
+
+<script>
+  // Your full verse list (as provided)
+  const VERSES = [
+    { ref:"1 John 4:8", text:"God is love." },
+    { ref:"Genesis 1:1", text:"In the beginning God created the heavens and the earth." },
+    { ref:"John 3:16", text:"For God so loved the world that he gave his one and only Son." },
+    { ref:"Psalm 145:9", text:"The Lord is good to all." },
+    { ref:"1 John 4:19", text:"We love because he first loved us." },
+    { ref:"Genesis 16:13", text:"You are the God who sees me." },
+    { ref:"James 1:17", text:"Every good and perfect gift is from above." },
+    { ref:"Psalm 100:3", text:"Know that the Lord is God. It is he who made us, and we are his." },
+    { ref:"Isaiah 40:28", text:"The Lord is the everlasting God, the Creator of the ends of the earth." },
+    { ref:"Psalm 136:1", text:"Give thanks to the Lord, for he is good. His love endures forever." },
+    { ref:"Joshua 1:9", text:"Be strong and courageous. Do not be afraid... for the Lord your God will be with you." },
+    { ref:"Philippians 4:13", text:"I can do all things through Christ who strengthens me." },
+    { ref:"Psalm 56:3", text:"When I am afraid, I put my trust in you." },
+    { ref:"Psalm 23:1", text:"The Lord is my shepherd, I lack nothing." },
+    { ref:"1 Peter 5:7", text:"Cast all your anxiety on him because he cares for you." },
+    { ref:"Isaiah 41:10", text:"So do not fear, for I am with you." },
+    { ref:"Psalm 46:1", text:"God is our refuge and strength, an ever-present help in trouble." },
+    { ref:"Nehemiah 8:10", text:"The joy of the Lord is your strength." },
+    { ref:"Psalm 27:1", text:"The Lord is my light and my salvation—whom shall I fear?" },
+    { ref:"Proverbs 18:10", text:"The name of the Lord is a fortified tower; the righteous run to it and are safe." },
+    { ref:"Ephesians 4:32", text:"Be kind and compassionate to one another, forgiving each other." },
+    { ref:"Luke 6:31", text:"Do to others as you would have them do to you." },
+    { ref:"1 Corinthians 13:4", text:"Love is patient, love is kind." },
+    { ref:"1 Corinthians 16:14", text:"Do everything in love." },
+    { ref:"Proverbs 17:17", text:"A friend loves at all times." },
+    { ref:"Matthew 22:39", text:"Love your neighbor as yourself." },
+    { ref:"1 John 3:18", text:"Dear children, let us not love with words or speech but with actions and in truth." },
+    { ref:"Romans 12:10", text:"Be devoted to one another in love. Honor one another above yourselves." },
+    { ref:"Galatians 6:10", text:"Therefore, as we have opportunity, let us do good to all people." },
+    { ref:"Hebrews 13:16", text:"And do not forget to do good and to share with others." },
+    { ref:"Proverbs 3:5", text:"Trust in the Lord with all your heart and lean not on your own understanding." },
+    { ref:"Psalm 119:105", text:"Your word is a lamp for my feet, a light on my path." },
+    { ref:"Hebrews 11:1", text:"Now faith is confidence in what we hope for and assurance about what we do not see." },
+    { ref:"Proverbs 30:5", text:"Every word of God is flawless; he is a shield to those who take refuge in him." },
+    { ref:"James 1:22", text:"Do not merely listen to the word... Do what it says." },
+    { ref:"Matthew 5:14", text:"You are the light of the world." },
+    { ref:"Colossians 3:2", text:"Set your minds on things above, not on earthly things." },
+    { ref:"Philippians 4:8", text:"Whatever is true, whatever is noble... think about such things." },
+    { ref:"Psalm 119:11", text:"I have hidden your word in my heart that I might not sin against you." },
+    { ref:"Matthew 7:7", text:"Ask and it will be given to you; seek and you will find." },
+    { ref:"Colossians 3:20", text:"Children, obey your parents in everything, for this pleases the Lord." },
+    { ref:"Ephesians 6:1", text:"Children, obey your parents in the Lord, for this is right." },
+    { ref:"1 Thessalonians 5:17", text:"Pray continually." },
+    { ref:"1 Thessalonians 5:16", text:"Rejoice always." },
+    { ref:"Psalm 150:6", text:"Let everything that has breath praise the Lord." },
+    { ref:"Philippians 2:14", text:"Do everything without grumbling or arguing." },
+    { ref:"Micah 6:8", text:"To act justly and to love mercy and to walk humbly with your God." },
+    { ref:"Colossians 3:23", text:"Whatever you do, work at it with all your heart, as working for the Lord." },
+    { ref:"Matthew 5:16", text:"Let your light shine before others, that they may see your good deeds." },
+    { ref:"Numbers 6:24", text:"The Lord bless you and keep you." },
+    { ref:"Psalm 19:1", text:"The heavens declare the glory of God; the skies proclaim the work of his hands." },
+    { ref:"Psalm 139:14", text:"I praise you because I am fearfully and wonderfully made." },
+    { ref:"Jeremiah 32:17", text:"Ah, Sovereign Lord... Nothing is too hard for you." },
+    { ref:"Psalm 147:4", text:"He determines the number of the stars and calls them each by name." },
+    { ref:"Matthew 19:26", text:"With man this is impossible, but with God all things are possible." },
+    { ref:"Psalm 33:6", text:"By the word of the Lord the heavens were made." },
+    { ref:"Job 37:5", text:"God’s voice thunders in marvelous ways; he does great things beyond our understanding." },
+    { ref:"Psalm 8:1", text:"Lord, our Lord, how majestic is your name in all the earth!" },
+    { ref:"Isaiah 40:26", text:"Lift up your eyes and look to the heavens: Who created all these?" },
+    { ref:"Psalm 104:24", text:"How many are your works, Lord! In wisdom you made them all." },
+    { ref:"John 8:12", text:"I am the light of the world. Whoever follows me will never walk in darkness." },
+    { ref:"Matthew 4:19", text:"Come, follow me, Jesus said, and I will send you out to fish for people." },
+    { ref:"John 10:11", text:"I am the good shepherd. The good shepherd lays down his life for the sheep." },
+    { ref:"John 14:6", text:"Jesus answered, 'I am the way and the truth and the life.'" },
+    { ref:"John 15:5", text:"I am the vine; you are the branches. If you remain in me... you will bear much fruit." },
+    { ref:"Matthew 28:20", text:"And surely I am with you always, to the very end of the age." },
+    { ref:"Revelation 3:20", text:"Here I am! I stand at the door and knock." },
+    { ref:"John 15:13", text:"Greater love has no one than this: to lay down one’s life for one’s friends." },
+    { ref:"Mark 10:14", text:"Let the little children come to me, and do not hinder them." },
+    { ref:"Luke 19:10", text:"For the Son of Man came to seek and to save the lost." },
+    { ref:"Proverbs 12:22", text:"The Lord detests lying lips, but he delights in people who are trustworthy." },
+    { ref:"Psalm 119:18", text:"Open my eyes that I may see wonderful things in your law." },
+    { ref:"Proverbs 4:23", text:"Above all else, guard your heart, for everything you do flows from it." },
+    { ref:"Proverbs 16:24", text:"Gracious words are a honeycomb, sweet to the soul and healing to the bones." },
+    { ref:"James 1:5", text:"If any of you lacks wisdom, you should ask God, who gives generously to all." },
+    { ref:"Proverbs 15:1", text:"A gentle answer turns away wrath, but a harsh word stirs up anger." },
+    { ref:"Psalm 34:13", text:"Keep your tongue from evil and your lips from telling lies." },
+    { ref:"Proverbs 20:11", text:"Even small children are known by their actions." },
+    { ref:"Psalm 111:10", text:"The fear of the Lord is the beginning of wisdom." },
+    { ref:"Proverbs 13:20", text:"Walk with the wise and become wise." },
+    { ref:"Psalm 4:8", text:"In peace I will lie down and sleep, for you alone, Lord, make me dwell in safety." },
+    { ref:"John 14:27", text:"Peace I leave with you; my peace I give you." },
+    { ref:"Philippians 4:6", text:"Do not be anxious about anything, but in every situation, by prayer... present your requests to God." },
+    { ref:"Hebrews 13:5", text:"Be content with what you have, because God has said, 'Never will I leave you.'" },
+    { ref:"Psalm 37:4", text:"Take delight in the Lord, and he will give you the desires of your heart." },
+    { ref:"Isaiah 26:3", text:"You will keep in perfect peace those whose minds are steadfast, because they trust in you." },
+    { ref:"Psalm 118:24", text:"This is the day the Lord has made; let us rejoice and be glad in it." },
+    { ref:"1 Timothy 6:6", text:"But godliness with contentment is great gain." },
+    { ref:"Psalm 16:11", text:"You make known to me the path of life; you will fill me with joy in your presence." },
+    { ref:"Matthew 6:33", text:"But seek first his kingdom and his righteousness." },
+    { ref:"Galatians 5:22-23", text:"But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control." },
+    { ref:"1 Timothy 4:12", text:"Don’t let anyone look down on you because you are young, but set an example for the believers." },
+    { ref:"1 Thessalonians 5:11", text:"Therefore encourage one another and build each other up." },
+    { ref:"Matthew 5:9", text:"Blessed are the peacemakers, for they will be called children of God." },
+    { ref:"Psalm 51:10", text:"Create in me a pure heart, O God, and renew a steadfast spirit within me." },
+    { ref:"1 Thessalonians 5:18", text:"Give thanks in all circumstances." },
+    { ref:"1 Corinthians 10:31", text:"So whether you eat or drink or whatever you do, do it all for the glory of God." },
+    { ref:"Romans 12:21", text:"Do not be overcome by evil, but overcome evil with good." },
+    { ref:"Matthew 5:7", text:"Blessed are the merciful, for they will be shown mercy." }
+  ];
+
+  // Simple kid-friendly message based on "category" (inferred from the reference)
+  function kidMessageFor(ref){
+    const r = ref.toLowerCase();
+    if (r.includes("john 3:16") || r.includes("john 15:13")) return "God’s love is HUGE—and Jesus proved it for you.";
+    if (r.includes("psalm 23") || r.includes("john 10:11")) return "Jesus is your Shepherd. He takes care of you.";
+    if (r.includes("peace") || r.includes("john 14:27") || r.includes("isaiah 26:3")) return "God can give your heart peace—even when life feels loud.";
+    if (r.includes("pray") || r.includes("thessalonians 5:17") || r.includes("matthew 7:7") || r.includes("philippians 4:6")) return "You can talk to God anytime. He hears you.";
+    if (r.includes("afraid") || r.includes("fear") || r.includes("isaiah 41:10") || r.includes("joshua 1:9")) return "You can be brave because God is with you.";
+    if (r.includes("kind") || r.includes("forgive") || r.includes("love")) return "God loves you—so you can love others in real ways.";
+    if (r.includes("created") || r.includes("genesis 1:1") || r.includes("creator")) return "God made the world—and He made you on purpose.";
+    return "God’s Word is a gift. Let it stick in your heart today.";
+  }
+
+  function categoryFor(ref){
+    const r = ref.toLowerCase();
+    if (r.includes("love")) return "Love";
+    if (r.includes("psalm")) return "Psalms";
+    if (r.includes("john")) return "Jesus";
+    if (r.includes("pray") || r.includes("thessalonians 5:17") || r.includes("philippians 4:6")) return "Prayer";
+    if (r.includes("fear") || r.includes("afraid") || r.includes("courage") || r.includes("joshua 1:9")) return "Courage";
+    return "Verse";
+  }
+
+  // No-repeat random (shuffle bag)
+  let bag = [];
+
+  function refillBag(){
+    bag = VERSES.map((_, i) => i);
+    for (let i = bag.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [bag[i], bag[j]] = [bag[j], bag[i]];
     }
+  }
 
-    function pickVerse(){
-      if (bag.length === 0) refillBag();
-      const idx = bag.pop();
-      shownCount++;
-      return VERSES[idx];
+  function pickVerse(){
+    if (bag.length === 0) refillBag();
+    return VERSES[bag.pop()];
+  }
+
+  function showVerse(v){
+    document.getElementById("verseText").textContent = `“${v.text}”`;
+    document.getElementById("verseRef").textContent = v.ref;
+    document.getElementById("kidLine").textContent = kidMessageFor(v.ref);
+    document.getElementById("categoryChip").textContent = categoryFor(v.ref);
+  }
+
+  function readAloud(text){
+    try{
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.rate = 0.95;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utter);
+    } catch(e){}
+  }
+
+  function toast(msg){
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 900);
+  }
+
+  async function copyText(text){
+    try{
+      await navigator.clipboard.writeText(text);
+      toast("Copied!");
+    } catch {
+      toast("Copy didn’t work here");
     }
+  }
 
-    function showVerse(v){
-      document.getElementById("verseText").textContent = `“${v.text}”`;
-      document.getElementById("verseRef").textContent = v.ref;
-      document.getElementById("kidLine").textContent = v.kid;
-      document.getElementById("categoryChip").textContent = v.cat || "Verse";
-
-      const remaining = bag.length;
-      const total = VERSES.length;
-      document.getElementById("counterNote").textContent =
-        `Verses: ${total} • Remaining before repeats: ${remaining}`;
-    }
-
-    // Read aloud (works on most phones; if not supported, it simply won't speak)
-    function readAloud(text){
-      try{
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.rate = 0.95;
-        window.speechSynthesis.cancel();
-        window.speechSynthesis.speak(utter);
-      } catch(e){}
-    }
-
-    async function copyText(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        alert("Copied!");
-      } catch {
-        alert("Couldn’t copy on this device. You can highlight and copy manually.");
-      }
-    }
-
-    document.getElementById("newBtn").addEventListener("click", () => {
-      showVerse(pickVerse());
-    });
-
-    document.getElementById("readBtn").addEventListener("click", () => {
-      const verse = document.getElementById("verseText").textContent.replace(/^“|”$/g, "");
-      const ref = document.getElementById("verseRef").textContent;
-      readAloud(`${verse} … ${ref}`);
-    });
-
-    document.getElementById("copyBtn").addEventListener("click", () => {
-      const text = `${document.getElementById("verseText").textContent} — ${document.getElementById("verseRef").textContent}`;
-      copyText(text);
-    });
-
-    // First load
-    refillBag();
+  document.getElementById("newBtn").addEventListener("click", () => {
     showVerse(pickVerse());
-  </script>
+  });
+
+  document.getElementById("readBtn").addEventListener("click", () => {
+    const v = document.getElementById("verseText").textContent.replace(/^“|”$/g, "");
+    const r = document.getElementById("verseRef").textContent;
+    readAloud(`${v} … ${r}`);
+  });
+
+  document.getElementById("copyBtn").addEventListener("click", () => {
+    const text = `${document.getElementById("verseText").textContent} — ${document.getElementById("verseRef").textContent}`;
+    copyText(text);
+  });
+
+  // First load
+  refillBag();
+  showVerse(pickVerse());
+</script>
 </body>
 </html>
