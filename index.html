@@ -8,8 +8,8 @@
   <style>
     :root{
       --pink:#ef6ea9;
-      --teal:#0c738f;
-      --mint:#39bb90;
+      --teal:#0c738f;   /* blue */
+      --mint:#39bb90;   /* green */
       --yellow:#f4dd7c;
 
       --bg:#f9fafb;
@@ -86,13 +86,14 @@
       border: 1px solid rgba(0,0,0,0.05);
     }
 
+    /* CHANGE #2: category box = blue with white text */
     .category{
       display:inline-block;
       font-size:12px;
       font-weight:900;
-      color:#0b4150;
-      background: rgba(244,221,124,.70);
-      border: 1px solid rgba(244,221,124,.90);
+      color:#ffffff;
+      background: var(--teal);
+      border: 1px solid rgba(0,0,0,0.06);
       padding:6px 10px;
       border-radius:999px;
       margin-bottom:10px;
@@ -111,9 +112,11 @@
       margin-bottom:14px;
     }
 
+    /* CHANGE #3: kid explanation box = green with white text */
     .kidLine{
-      background: linear-gradient(180deg, rgba(244,221,124,.35), rgba(244,221,124,.18));
-      border: 1px solid rgba(244,221,124,.90);
+      background: var(--mint);
+      color:#ffffff;
+      border: 1px solid rgba(0,0,0,0.06);
       padding: 14px;
       border-radius: 14px;
       font-size: 15px;
@@ -330,46 +333,46 @@ function showVerse(v){
 }
 
 /* ===============================
-   4) READ ALOUD (FEMALE / KID-LIKE)
+   4) READ ALOUD (NORMAL FEMALE en-US)
    =============================== */
-function scoreVoice(v){
-  const name = (v.name || "").toLowerCase();
-  const lang = (v.lang || "").toLowerCase();
-  let score = 0;
-
-  if (lang.includes("en-us")) score += 8;
-  else if (lang.includes("en")) score += 4;
-
-  // likely female names
-  const femaleHints = ["female","woman","girl","samantha","victoria","karen","moira","tessa","kathy","zira","ava","amelia","emma","serena"];
-  if (femaleHints.some(h => name.includes(h))) score += 12;
-
-  // kid hints (rare)
-  const kidHints = ["child","kid","junior","young","boy","girl"];
-  if (kidHints.some(h => name.includes(h))) score += 20;
-
-  if (name.includes("natural")) score += 6;
-
-  return score;
-}
-
-function getBestVoice(){
+function pickFemaleAmericanVoice(){
   const voices = speechSynthesis.getVoices() || [];
   if (!voices.length) return null;
-  return voices.slice().sort((a,b)=>scoreVoice(b)-scoreVoice(a))[0] || null;
+
+  const isEnUS = v => (v.lang || "").toLowerCase().includes("en-us");
+  const isEn   = v => (v.lang || "").toLowerCase().startsWith("en");
+
+  // "Female" isn't standardized, so we use name hints,
+  // BUT only within en-US first.
+  const femaleNameHints = [
+    "samantha","victoria","karen","moira","tessa","kathy","zira","ava","amelia","emma","serena",
+    "allison","julie","olivia","susan","lisa","nicole","rachel","joanna"
+  ];
+
+  const score = (v) => {
+    const name = (v.name || "").toLowerCase();
+    let s = 0;
+    if (isEnUS(v)) s += 100;        // hard preference
+    else if (isEn(v)) s += 40;
+
+    if (femaleNameHints.some(h => name.includes(h))) s += 20;
+    if (name.includes("natural")) s += 10;
+    if (name.includes("enhanced")) s += 6;
+    return s;
+  };
+
+  return voices.slice().sort((a,b)=>score(b)-score(a))[0] || null;
 }
 
 function readAloud(){
   if (!current) return;
 
   const utter = new SpeechSynthesisUtterance(`${current.text} … ${current.ref}`);
+  const v = pickFemaleAmericanVoice();
+  if (v) utter.voice = v;
 
-  const best = getBestVoice();
-  if (best) utter.voice = best;
-
-  // kid-ish feel
-  utter.rate = 0.92;
-  utter.pitch = 1.35;
+  utter.rate = 0.95;   // natural
+  utter.pitch = 1.05;  // keep it normal
   utter.volume = 1;
 
   speechSynthesis.cancel();
@@ -385,14 +388,11 @@ if ("speechSynthesis" in window){
 
 /* ===============================
    5) NEW VERSE EACH NFC TAP
-   - When the page is brought back to the front,
-     show a NEW verse automatically.
    =============================== */
 let lastAutoChange = 0;
 function maybeAutoChange(){
   const now = Date.now();
-  // Debounce to prevent double firing (common on iOS)
-  if (now - lastAutoChange < 800) return;
+  if (now - lastAutoChange < 800) return; // debounce
   lastAutoChange = now;
   showVerse(pickVerse());
 }
@@ -401,22 +401,17 @@ function maybeAutoChange(){
 refillBag();
 showVerse(pickVerse());
 
-// When user taps NFC and returns to this page/tab:
+// When NFC tap brings this page to the front again:
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) maybeAutoChange();
 });
-
 window.addEventListener("focus", () => {
   maybeAutoChange();
 });
-
-// Safari/iOS often uses back-forward cache; pageshow catches it
 window.addEventListener("pageshow", (e) => {
-  // If it was restored from cache OR just shown again, refresh verse
   if (e.persisted) maybeAutoChange();
 });
 </script>
 </body>
 </html>
-
 
