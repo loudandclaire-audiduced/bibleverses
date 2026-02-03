@@ -1,500 +1,212 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tap to Proclaim It</title>
+  <meta charset="UTF-8" />
+  <title>Proclaim It</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    :root{
-      --pink:#ef6ea9;
-      --blue:#0c738f;
-      --green:#39bb90;
-      --yellow:#f4dd7c;
-
-      --bg:#f9fafb;
-      --card:#ffffff;
-      --text:#1a1a1a;
-      --radius:18px;
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
     }
 
-    *{ box-sizing:border-box; }
-
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(900px 500px at 20% 0%, rgba(239,110,169,.14), transparent 60%),
-        radial-gradient(900px 500px at 90% 10%, rgba(57,187,144,.12), transparent 55%),
-        var(--bg);
-      color: var(--text);
+    .container {
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
     }
 
-    .wrap{ max-width:420px; margin:0 auto; padding:18px; }
-
-    .header{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin:10px 0 18px;
+    img.logo {
+      max-width: 180px;
+      margin-bottom: 16px;
     }
 
-    /* LOGO — no yellow border */
-    .logoWrap{
-      width:56px;
-      height:56px;
-      border-radius:16px;
-      background:#ffffff;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      flex:0 0 auto;
-    }
-    .logoWrap img{
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      padding:8px;
+    h1 {
+      color: #0c738f;
+      margin-bottom: 4px;
     }
 
-    h1{ margin:0; font-size:24px; line-height:1.2; }
-
-    .sub{
-      font-size:13px;
-      font-weight:900;
-      color:var(--blue);
-      margin-top:4px;
+    .subtitle {
+      color: #555;
+      margin-bottom: 20px;
+      font-weight: 500;
     }
 
-    /* MAIN CONTENT CARD — yellow outline */
-    .card{
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:20px;
-      border:2px solid var(--yellow);
-      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    .card {
+      background: #ffffff;
+      border: 3px solid #f4dd7c;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
     }
 
-    .category{
-      display:inline-block;
-      font-size:12px;
-      font-weight:900;
-      color:#ffffff;
-      background: var(--blue);
-      padding:6px 10px;
-      border-radius:999px;
-      margin-bottom:10px;
+    .category {
+      display: inline-block;
+      background: #0c738f;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 12px;
     }
 
-    .verseText{
-      font-size:22px;
-      line-height:1.35;
-      margin: 6px 0 10px;
+    .verse {
+      font-size: 1.1rem;
+      margin: 12px 0;
+      line-height: 1.4;
     }
 
-    .reference{
-      font-size:14px;
-      font-weight:900;
-      color:var(--blue);
-      margin-bottom:14px;
+    .reference {
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #333;
     }
 
-    .kidLine{
-      background: var(--green);
-      color:#ffffff;
+    .explanation {
+      background: #39bb90;
+      color: white;
       padding: 14px;
-      border-radius: 14px;
-      font-size: 15px;
-      line-height: 1.45;
-      margin-bottom: 14px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
     }
 
-    button{
-      width:100%;
-      border:none;
-      border-radius:14px;
-      padding:14px;
-      font-size:16px;
-      font-weight:900;
-      background: var(--pink);
-      color:#ffffff;
-      cursor:pointer;
+    button, .loud-claire-button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: #ef6ea9;
+      color: white;
+      text-decoration: none;
+      display: block;
     }
-    button:active{ transform: scale(.98); }
-
-    .tip{
-      margin-top:10px;
-      font-size:12px;
-      line-height:1.35;
-      color:#5b5b5b;
-      text-align:center;
-      display:none;
-    }
-    .tip a{ color: var(--blue); font-weight:800; text-decoration:none; }
-    .tip a:hover{ text-decoration:underline; }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="header">
-      <div class="logoWrap">
-        <img src="logo.png" alt="Loud & Claire logo" />
-      </div>
-      <div>
-        <h1>Tap to Proclaim It</h1>
-        <div class="sub">Loud and Claire</div>
-      </div>
-    </div>
+  <div class="container">
+    <img src="logo.png" alt="Loud & Claire Logo" class="logo" />
+
+    <h1>Tap to Proclaim It</h1>
+    <div class="subtitle">Loud &amp; Claire</div>
 
     <div class="card">
       <div id="category" class="category"></div>
-      <div id="verse" class="verseText"></div>
+
+      <div id="verseText" class="verse"></div>
       <div id="reference" class="reference"></div>
-      <div id="kidLine" class="kidLine"></div>
 
-      <button id="readBtn" onclick="readAloud()">Read Aloud</button>
+      <div class="explanation" id="explanation"></div>
 
-      <!-- Android-only tip (hidden on iPhone/desktop) -->
-      <div id="androidTip" class="tip">
-        Tip for Android: update <strong>Speech Services by Google</strong> in the Play Store for a smoother voice.
-      </div>
+      <button onclick="readVerse()">Read Aloud</button>
+
+      <a
+        href="https://bit.ly/LoudandClaire"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="loud-claire-button"
+      >
+        Loud &amp; Claire
+      </a>
     </div>
   </div>
 
-<script>
-/* ===============================
-   ALL VERSES YOU PROVIDED
-   =============================== */
-const VERSES = [
-  // Knowing God’s Love & Creation
-  { category:"Knowing God’s Love & Creation", ref:"Genesis 1:1", text:"In the beginning God created the heavens and the earth." },
-  { category:"Knowing God’s Love & Creation", ref:"Psalm 139:14", text:"I praise you because I am fearfully and wonderfully made." },
-  { category:"Knowing God’s Love & Creation", ref:"John 3:16", text:"For God so loved the world that he gave his one and only Son." },
-  { category:"Knowing God’s Love & Creation", ref:"Psalm 145:9", text:"The Lord is good to all." },
-  { category:"Knowing God’s Love & Creation", ref:"1 John 4:19", text:"We love because he first loved us." },
-  { category:"Knowing God’s Love & Creation", ref:"Genesis 16:13", text:"You are the God who sees me." },
-  { category:"Knowing God’s Love & Creation", ref:"James 1:17", text:"Every good and perfect gift is from above." },
-  { category:"Knowing God’s Love & Creation", ref:"Psalm 100:3", text:"Know that the Lord is God. It is he who made us, and we are his." },
-  { category:"Knowing God’s Love & Creation", ref:"Isaiah 40:28", text:"The Lord is the everlasting God, the Creator of the ends of the earth." },
-  { category:"Knowing God’s Love & Creation", ref:"Psalm 136:1", text:"Give thanks to the Lord, for he is good. His love endures forever." },
-  { category:"Knowing God’s Love & Creation", ref:"Psalm 19:1", text:"The heavens declare the glory of God; the skies proclaim the work of his hands." },
-  { category:"Knowing God’s Love & Creation", ref:"Psalm 147:4", text:"He determines the number of the stars and calls them each by name." },
-  { category:"Knowing God’s Love & Creation", ref:"Isaiah 40:26", text:"Lift up your eyes and look to the heavens: Who created all these?" },
-  { category:"Knowing God’s Love & Creation", ref:"Psalm 104:24", text:"How many are your works, Lord! In wisdom you made them all." },
-  { category:"Knowing God’s Love & Creation", ref:"Psalm 33:6", text:"By the word of the Lord the heavens were made." },
-  { category:"Knowing God’s Love & Creation", ref:"Psalm 139:1", text:"O Lord, you have searched me and you know me." },
+  <script>
+    const verses = [
+      {
+        category: "Knowing God’s Love & Creation",
+        text: "In the beginning God created the heavens and the earth.",
+        reference: "Genesis 1:1",
+        explanation: "God made everything! The world didn’t happen by accident — God lovingly created it."
+      },
+      {
+        category: "Knowing God’s Love & Creation",
+        text: "I praise you because I am fearfully and wonderfully made.",
+        reference: "Psalm 139:14",
+        explanation: "God made you on purpose, just the way you are. You are precious to Him."
+      },
+      {
+        category: "Strength, Courage & Comfort",
+        text: "Be strong and courageous. Do not be afraid... for the Lord your God will be with you.",
+        reference: "Joshua 1:9",
+        explanation: "God promises to be with you, even when things feel scary or hard."
+      },
+      {
+        category: "Following Jesus & The Gospel",
+        text: "For God so loved the world that he gave his one and only Son.",
+        reference: "John 3:16",
+        explanation: "Jesus came because God loves us so much. Jesus gave His life so we can belong to Him forever."
+      },
+      {
+        category: "How to Treat Others",
+        text: "Be kind and compassionate to one another.",
+        reference: "Ephesians 4:32",
+        explanation: "Because Jesus is kind to us, we can be kind and forgiving to others."
+      },
+      {
+        category: "Growing in Faith & Wisdom",
+        text: "Trust in the Lord with all your heart and lean not on your own understanding.",
+        reference: "Proverbs 3:5",
+        explanation: "Even when you don’t understand everything, you can trust that God knows what is best."
+      },
+      {
+        category: "Praise & Worship",
+        text: "Let everything that has breath praise the Lord.",
+        reference: "Psalm 150:6",
+        explanation: "God loves our songs, prayers, and praise — we can worship Him with joy!"
+      },
+      {
+        category: "Wisdom, Peace & Guidance",
+        text: "Peace I leave with you; my peace I give you.",
+        reference: "John 14:27",
+        explanation: "Jesus gives us peace that stays with us, even when life feels noisy or busy."
+      }
+      // ✅ You can keep adding more verses here using the same format
+    ];
 
-  // Strength, Courage & Comfort
-  { category:"Strength, Courage & Comfort", ref:"Joshua 1:9", text:"Be strong and courageous. Do not be afraid... for the Lord your God will be with you." },
-  { category:"Strength, Courage & Comfort", ref:"Deuteronomy 31:8", text:"The Lord himself goes before you and will be with you; he will never leave you nor forsake you." },
-  { category:"Strength, Courage & Comfort", ref:"Philippians 4:13", text:"I can do all things through Christ who strengthens me." },
-  { category:"Strength, Courage & Comfort", ref:"Psalm 56:3", text:"When I am afraid, I put my trust in you." },
-  { category:"Strength, Courage & Comfort", ref:"Psalm 23:1", text:"The Lord is my shepherd, I lack nothing." },
-  { category:"Strength, Courage & Comfort", ref:"1 Peter 5:7", text:"Cast all your anxiety on him because he cares for you." },
-  { category:"Strength, Courage & Comfort", ref:"Isaiah 41:10", text:"So do not fear, for I am with you." },
-  { category:"Strength, Courage & Comfort", ref:"Psalm 46:1", text:"God is our refuge and strength, an ever-present help in trouble." },
-  { category:"Strength, Courage & Comfort", ref:"Nehemiah 8:10", text:"The joy of the Lord is your strength." },
-  { category:"Strength, Courage & Comfort", ref:"Psalm 27:1", text:"The Lord is my light and my salvation—whom shall I fear?" },
-  { category:"Strength, Courage & Comfort", ref:"Proverbs 18:10", text:"The name of the Lord is a fortified tower; the righteous run to it and are safe." },
-  { category:"Strength, Courage & Comfort", ref:"Hebrews 6:19", text:"We have this hope as an anchor for the soul, firm and secure." },
-  { category:"Strength, Courage & Comfort", ref:"Jeremiah 32:17", text:"Ah, Sovereign Lord... Nothing is too hard for you." },
-  { category:"Strength, Courage & Comfort", ref:"Psalm 121:2", text:"My help comes from the Lord, the Maker of heaven and earth." },
-  { category:"Strength, Courage & Comfort", ref:"Psalm 18:2", text:"The Lord is my rock, my fortress and my deliverer." },
+    const selected = verses[Math.floor(Math.random() * verses.length)];
 
-  // Following Jesus & The Gospel
-  { category:"Following Jesus & The Gospel", ref:"John 8:12", text:"I am the light of the world. Whoever follows me will never walk in darkness." },
-  { category:"Following Jesus & The Gospel", ref:"Matthew 4:19", text:"Come, follow me, Jesus said, and I will send you out to fish for people." },
-  { category:"Following Jesus & The Gospel", ref:"John 10:11", text:"I am the good shepherd. The good shepherd lays down his life for the sheep." },
-  { category:"Following Jesus & The Gospel", ref:"John 14:6", text:"Jesus answered, 'I am the way and the truth and the life.'" },
-  { category:"Following Jesus & The Gospel", ref:"John 8:36", text:"So if the Son sets you free, you will be free indeed." },
-  { category:"Following Jesus & The Gospel", ref:"2 Corinthians 5:17", text:"Therefore, if anyone is in Christ, the new creation has come." },
-  { category:"Following Jesus & The Gospel", ref:"Matthew 28:19-20", text:"Therefore go and make disciples of all nations... And surely I am with you always." },
-  { category:"Following Jesus & The Gospel", ref:"John 14:2-3", text:"My Father’s house has many rooms... I am going there to prepare a place for you." },
-  { category:"Following Jesus & The Gospel", ref:"Revelation 3:20", text:"Here I am! I stand at the door and knock." },
-  { category:"Following Jesus & The Gospel", ref:"John 15:13", text:"Greater love has no one than this: to lay down one’s life for one’s friends." },
-  { category:"Following Jesus & The Gospel", ref:"Mark 10:14", text:"Let the little children come to me, and do not hinder them." },
-  { category:"Following Jesus & The Gospel", ref:"Luke 19:10", text:"For the Son of Man came to seek and to save the lost." },
-  { category:"Following Jesus & The Gospel", ref:"John 15:5", text:"I am the vine; you are the branches. If you remain in me... you will bear much fruit." },
-  { category:"Following Jesus & The Gospel", ref:"Luke 2:11", text:"Today in the town of David a Savior has been born to you; he is the Messiah, the Lord." },
+    document.getElementById("category").textContent = selected.category;
+    document.getElementById("verseText").textContent = `"${selected.text}"`;
+    document.getElementById("reference").textContent = selected.reference;
+    document.getElementById("explanation").textContent = selected.explanation;
 
-  // How to Treat Others (Kindness & Love)
-  { category:"How to Treat Others (Kindness & Love)", ref:"Ephesians 4:32", text:"Be kind and compassionate to one another, forgiving each other." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"Luke 6:31", text:"Do to others as you would have them do to you." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"1 Corinthians 13:4", text:"Love is patient, love is kind." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"Mark 12:31", text:"Love your neighbor as yourself. There is no commandment greater than these." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"1 Corinthians 16:14", text:"Do everything in love." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"Proverbs 17:17", text:"A friend loves at all times." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"1 John 3:18", text:"Dear children, let us not love with words or speech but with actions and in truth." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"Romans 12:10", text:"Be devoted to one another in love. Honor one another above yourselves." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"Galatians 6:10", text:"Therefore, as we have opportunity, let us do good to all people." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"Hebrews 13:16", text:"And do not forget to do good and to share with others." },
-  { category:"How to Treat Others (Kindness & Love)", ref:"Proverbs 11:25", text:"A generous person will prosper; whoever refreshes others will be refreshed." },
+    function readVerse() {
+      const utterance = new SpeechSynthesisUtterance(
+        `${selected.text} — ${selected.reference}`
+      );
 
-  // Growing in Faith & Wisdom
-  { category:"Growing in Faith & Wisdom", ref:"Proverbs 3:5", text:"Trust in the Lord with all your heart and lean not on your own understanding." },
-  { category:"Growing in Faith & Wisdom", ref:"Psalm 119:105", text:"Your word is a lamp for my feet, a light on my path." },
-  { category:"Growing in Faith & Wisdom", ref:"Romans 8:28", text:"And we know that in all things God works for the good of those who love him." },
-  { category:"Growing in Faith & Wisdom", ref:"Colossians 2:6-7", text:"So then, just as you received Christ Jesus as Lord, continue to live your lives in him." },
-  { category:"Growing in Faith & Wisdom", ref:"Proverbs 30:5", text:"Every word of God is flawless; he is a shield to those who take refuge in him." },
-  { category:"Growing in Faith & Wisdom", ref:"Matthew 5:14", text:"You are the light of the world." },
-  { category:"Growing in Faith & Wisdom", ref:"Colossians 3:2", text:"Set your minds on things above, not on earthly things." },
-  { category:"Growing in Faith & Wisdom", ref:"Philippians 4:8", text:"Whatever is true, whatever is noble... think about such things." },
-  { category:"Growing in Faith & Wisdom", ref:"Psalm 119:11", text:"I have hidden your word in my heart that I might not sin against you." },
-  { category:"Growing in Faith & Wisdom", ref:"Matthew 7:7", text:"Ask and it will be given to you; seek and you will find." },
-  { category:"Growing in Faith & Wisdom", ref:"Hebrews 11:1", text:"Now faith is confidence in what we hope for and assurance about what we do not see." },
-  { category:"Growing in Faith & Wisdom", ref:"Proverbs 2:6", text:"For the Lord gives wisdom; from his mouth come knowledge and understanding." },
+      const voices = speechSynthesis.getVoices();
+      const preferredVoice = voices.find(v =>
+        v.lang === "en-US" &&
+        (v.name.toLowerCase().includes("female") ||
+         v.name.toLowerCase().includes("samantha") ||
+         v.name.toLowerCase().includes("google"))
+      );
 
-  // Obeying & Pleasing God
-  { category:"Obeying & Pleasing God", ref:"Colossians 3:20", text:"Children, obey your parents in everything, for this pleases the Lord." },
-  { category:"Obeying & Pleasing God", ref:"Ephesians 6:1", text:"Children, obey your parents in the Lord, for this is right." },
-  { category:"Obeying & Pleasing God", ref:"1 John 5:14", text:"This is the confidence we have in approaching God: that if we ask anything according to his will, he hears us." },
-  { category:"Obeying & Pleasing God", ref:"1 Thessalonians 5:17", text:"Pray continually." },
-  { category:"Obeying & Pleasing God", ref:"1 Thessalonians 5:16", text:"Rejoice always." },
-  { category:"Obeying & Pleasing God", ref:"1 Thessalonians 5:18", text:"Give thanks in all circumstances; for this is God’s will for you in Christ Jesus." },
-  { category:"Obeying & Pleasing God", ref:"Philippians 2:14", text:"Do everything without grumbling or arguing." },
-  { category:"Obeying & Pleasing God", ref:"Micah 6:8", text:"To act justly and to love mercy and to walk humbly with your God." },
-  { category:"Obeying & Pleasing God", ref:"Colossians 3:23", text:"Whatever you do, work at it with all your heart, as working for the Lord." },
-  { category:"Obeying & Pleasing God", ref:"1 Corinthians 10:31", text:"So whether you eat or drink or whatever you do, do it all for the glory of God." },
-  { category:"Obeying & Pleasing God", ref:"Psalm 119:34", text:"Give me understanding, so that I may keep your law and obey it with all my heart." },
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
 
-  // Praise & Worship
-  { category:"Praise & Worship", ref:"Psalm 96:2", text:"Sing to the Lord, praise his name; proclaim his salvation day after day." },
-  { category:"Praise & Worship", ref:"Psalm 98:4", text:"Shout for joy to the Lord, all the earth, burst into jubilant song with music." },
-  { category:"Praise & Worship", ref:"Psalm 150:6", text:"Let everything that has breath praise the Lord." },
-  { category:"Praise & Worship", ref:"Psalm 107:1", text:"Give thanks to the Lord, for he is good; his love endures forever." },
-  { category:"Praise & Worship", ref:"Psalm 8:1", text:"Lord, our Lord, how majestic is your name in all the earth!" },
-  { category:"Praise & Worship", ref:"Psalm 118:24", text:"This is the day the Lord has made; let us rejoice and be glad in it." },
-  { category:"Praise & Worship", ref:"Psalm 147:1", text:"How good it is to sing praises to our God, how pleasant and fitting to praise him!" },
-  { category:"Praise & Worship", ref:"Psalm 63:4", text:"I will praise you as long as I live, and in your name I will lift up my hands." },
+      utterance.rate = 0.9;
+      utterance.pitch = 1.05;
 
-  // Character & Armor of God
-  { category:"Character & Armor of God", ref:"Galatians 5:22-23", text:"But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness and self-control." },
-  { category:"Character & Armor of God", ref:"Ephesians 6:13", text:"Therefore put on the full armor of God, so that when the day of evil comes, you may be able to stand your ground." },
-  { category:"Character & Armor of God", ref:"Joshua 21:45", text:"Not one of all the Lord’s good promises to Israel failed; every one was fulfilled." },
-  { category:"Character & Armor of God", ref:"2 Corinthians 13:14", text:"May the grace of the Lord Jesus Christ, and the love of God, and the fellowship of the Holy Spirit be with you all." },
-  { category:"Character & Armor of God", ref:"1 Timothy 4:12", text:"Don’t let anyone look down on you because you are young, but set an example." },
-  { category:"Character & Armor of God", ref:"Proverbs 12:22", text:"The Lord detests lying lips, but he delights in people who are trustworthy." },
-  { category:"Character & Armor of God", ref:"Proverbs 4:23", text:"Above all else, guard your heart, for everything you do flows from it." },
-  { category:"Character & Armor of God", ref:"Proverbs 15:1", text:"A gentle answer turns away wrath, but a harsh word stirs up anger." },
-  { category:"Character & Armor of God", ref:"Romans 12:21", text:"Do not be overcome by evil, but overcome evil with good." },
-  { category:"Character & Armor of God", ref:"Psalm 51:10", text:"Create in me a pure heart, O God." },
-  { category:"Character & Armor of God", ref:"1 Thessalonians 5:11", text:"Therefore encourage one another and build each other up." },
-  { category:"Character & Armor of God", ref:"Matthew 5:9", text:"Blessed are the peacemakers, for they will be called children of God." },
-  { category:"Character & Armor of God", ref:"Matthew 5:16", text:"Let your light shine before others, that they may see your good deeds." },
-  { category:"Character & Armor of God", ref:"Proverbs 28:13", text:"The one who confesses and renounces their sins finds mercy." },
-  { category:"Character & Armor of God", ref:"Ephesians 4:29", text:"Do not let any unwholesome talk come out of your mouths, but only what is helpful for building others up." },
-
-  // Wisdom, Peace & Guidance
-  { category:"Wisdom, Peace & Guidance", ref:"Psalm 4:8", text:"In peace I will lie down and sleep, for you alone, Lord, make me dwell in safety." },
-  { category:"Wisdom, Peace & Guidance", ref:"John 14:27", text:"Peace I leave with you; my peace I give you." },
-  { category:"Wisdom, Peace & Guidance", ref:"Philippians 4:6", text:"Do not be anxious about anything, but in every situation, by prayer... present your requests to God." },
-  { category:"Wisdom, Peace & Guidance", ref:"Hebrews 13:5", text:"Be content with what you have, because God has said, 'Never will I leave you.'" },
-  { category:"Wisdom, Peace & Guidance", ref:"Psalm 37:4", text:"Take delight in the Lord, and he will give you the desires of your heart." },
-  { category:"Wisdom, Peace & Guidance", ref:"Isaiah 26:3", text:"You will keep in perfect peace those whose minds are steadfast." },
-  { category:"Wisdom, Peace & Guidance", ref:"Matthew 19:26", text:"With man this is impossible, but with God all things are possible." },
-  { category:"Wisdom, Peace & Guidance", ref:"Proverbs 16:24", text:"Gracious words are a honeycomb, sweet to the soul and healing to the bones." },
-  { category:"Wisdom, Peace & Guidance", ref:"James 1:5", text:"If any of you lacks wisdom, you should ask God, who gives generously to all." },
-  { category:"Wisdom, Peace & Guidance", ref:"Psalm 34:13", text:"Keep your tongue from evil and your lips from telling lies." },
-  { category:"Wisdom, Peace & Guidance", ref:"Proverbs 20:11", text:"Even small children are known by their actions." },
-  { category:"Wisdom, Peace & Guidance", ref:"Psalm 111:10", text:"The fear of the Lord is the beginning of wisdom." },
-  { category:"Wisdom, Peace & Guidance", ref:"Proverbs 13:20", text:"Walk with the wise and become wise." },
-  { category:"Wisdom, Peace & Guidance", ref:"Matthew 6:33", text:"But seek first his kingdom and his righteousness." },
-  { category:"Wisdom, Peace & Guidance", ref:"Job 37:5", text:"God’s voice thunders in marvelous ways; he does great things beyond our understanding." },
-  { category:"Wisdom, Peace & Guidance", ref:"Matthew 5:7", text:"Blessed are the merciful, for they will be shown mercy." },
-  { category:"Wisdom, Peace & Guidance", ref:"Numbers 6:24", text:"The Lord bless you and keep you." },
-  { category:"Wisdom, Peace & Guidance", ref:"Proverbs 14:29", text:"Whoever is patient has great understanding, but one who is quick-tempered displays folly." },
-  { category:"Wisdom, Peace & Guidance", ref:"Psalm 32:8", text:"I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you." },
-  { category:"Wisdom, Peace & Guidance", ref:"Proverbs 3:6", text:"In all your ways submit to him, and he will make your paths straight." },
-  { category:"Wisdom, Peace & Guidance", ref:"Psalm 34:1", text:"I will extol the Lord at all times; his praise will always be on my lips." },
-  { category:"Wisdom, Peace & Guidance", ref:"1 Peter 3:8", text:"Finally, all of you, be like-minded, be sympathetic, love one another, be compassionate and humble." },
-  { category:"Wisdom, Peace & Guidance", ref:"Psalm 119:10", text:"I seek you with all my heart; do not let me stray from your commands." }
-];
-
-/* ===============================
-   Kid-friendly explanations (LCMS-aligned)
-   =============================== */
-const KID_LINES = {
-  "Knowing God’s Love & Creation":
-    "God made you on purpose, loves you first, and sees you always. You can trust Him.",
-  "Strength, Courage & Comfort":
-    "When you feel scared or worried, God promises to be with you and help you.",
-  "Following Jesus & The Gospel":
-    "Jesus is your Savior. He forgives you and stays with you—because He loves you.",
-  "How to Treat Others (Kindness & Love)":
-    "Because Jesus is kind to you, you can be kind to others with your words and actions.",
-  "Growing in Faith & Wisdom":
-    "God’s Word teaches you what’s true and helps you know the way to go.",
-  "Obeying & Pleasing God":
-    "God loves you first. Then He teaches you how to live—and you can say 'thank you' with your choices.",
-  "Praise & Worship":
-    "God is worthy of praise! We can thank Him, sing, and celebrate what He has done.",
-  "Character & Armor of God":
-    "God helps you stand strong. He grows good fruit in you and uses your life to bless others.",
-  "Wisdom, Peace & Guidance":
-    "God can give you peace and help you make wise choices. You can bring Him your worries."
-};
-
-function kidLineFor(category){
-  return KID_LINES[category] || "God’s Word is a gift—let it stick in your heart today.";
-}
-
-/* ===============================
-   No-repeat shuffle bag
-   =============================== */
-let bag = [];
-function refillBag(){
-  bag = VERSES.map((_, i) => i);
-  for (let i = bag.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [bag[i], bag[j]] = [bag[j], bag[i]];
-  }
-}
-function pickVerse(){
-  if (bag.length === 0) refillBag();
-  return VERSES[bag.pop()];
-}
-
-let current = null;
-function showVerse(v){
-  current = v;
-  document.getElementById("category").textContent = v.category;
-  document.getElementById("verse").textContent = `“${v.text}”`;
-  document.getElementById("reference").textContent = v.ref;
-  document.getElementById("kidLine").textContent = kidLineFor(v.category);
-}
-
-/* ===============================
-   Android-only tip display
-   =============================== */
-function isAndroid(){
-  const ua = navigator.userAgent || "";
-  return /Android/i.test(ua);
-}
-if (isAndroid()) {
-  const tip = document.getElementById("androidTip");
-  if (tip) tip.style.display = "block";
-}
-
-/* ===============================
-   NATURAL-SOUNDING READ ALOUD
-   =============================== */
-function getVoicesSafe() {
-  try { return speechSynthesis.getVoices() || []; }
-  catch { return []; }
-}
-
-function pickBestVoice() {
-  const voices = getVoicesSafe();
-  if (!voices.length) return null;
-
-  const qualityHints = ["enhanced","premium","natural","neural","wavenet","siri","google"];
-  const avoidHints   = ["compact","espeak","festival","mbrola"];
-  const femaleHints  = ["samantha","ava","victoria","allison","zoe","emma","olivia","tessa","karen",
-                        "moira","joanna","zira","susan","lisa","nicole","serena","aria"];
-
-  const isEnUS = v => (v.lang || "").toLowerCase().includes("en-us");
-  const isEn   = v => (v.lang || "").toLowerCase().startsWith("en");
-
-  function score(v) {
-    const name = (v.name || "").toLowerCase();
-    const lang = (v.lang || "").toLowerCase();
-    let s = 0;
-
-    if (isEnUS(v)) s += 300;
-    else if (isEn(v)) s += 120;
-
-    if (qualityHints.some(h => name.includes(h))) s += 160;
-    if (femaleHints.some(h => name.includes(h))) s += 60;
-
-    if (avoidHints.some(h => name.includes(h))) s -= 240;
-    if (name.includes("compact")) s -= 120;
-
-    if (v.default) s += 15;
-
-    return s;
-  }
-
-  return voices.slice().sort((a,b) => score(b) - score(a))[0] || null;
-}
-
-function makeSpeakableText(text) {
-  let t = (text || "").replace(/\s*\.\.\.\s*/g, "… ");
-  t = t.replace(/—/g, " — ").replace(/\s+/g, " ").trim();
-  return t;
-}
-
-function speakChunk(text, voice, opts) {
-  const u = new SpeechSynthesisUtterance(makeSpeakableText(text));
-  if (voice) u.voice = voice;
-  u.rate = opts?.rate ?? 0.90;
-  u.pitch = opts?.pitch ?? 1.02;
-  u.volume = opts?.volume ?? 1;
-  speechSynthesis.speak(u);
-  return u;
-}
-
-function readAloud() {
-  if (!current) return;
-
-  speechSynthesis.cancel();
-
-  const voice = pickBestVoice();
-
-  // Verse first
-  const u1 = speakChunk(current.text, voice, {
-    rate: 0.90,
-    pitch: 1.03,
-    volume: 1
-  });
-
-  // Reference after a short pause (sounds more human)
-  u1.onend = () => {
-    setTimeout(() => {
-      speakChunk(current.ref, voice, {
-        rate: 0.92,
-        pitch: 1.00,
-        volume: 1
-      });
-    }, 320);
-  };
-}
-
-// preload voices (especially helps Safari/iOS)
-function initVoices(){ getVoicesSafe(); }
-if ("speechSynthesis" in window){
-  initVoices();
-  speechSynthesis.onvoiceschanged = initVoices;
-}
-
-/* ===============================
-   New random verse on NFC tap / return to page
-   =============================== */
-let lastAutoChange = 0;
-function maybeAutoChange(){
-  const now = Date.now();
-  if (now - lastAutoChange < 800) return; // debounce
-  lastAutoChange = now;
-  showVerse(pickVerse());
-}
-
-// initial load
-refillBag();
-showVerse(pickVerse());
-
-// When NFC tap re-opens the page / brings it forward:
-document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) maybeAutoChange();
-});
-window.addEventListener("focus", () => {
-  maybeAutoChange();
-});
-window.addEventListener("pageshow", (e) => {
-  if (e.persisted) maybeAutoChange();
-});
-</script>
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
+    }
+  </script>
 </body>
 </html>
+
 
