@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tap to Proclaim It</title>
+  <title>Proclaim It</title>
 
   <style>
     :root{
@@ -57,6 +57,18 @@
       height:100%;
       object-fit:contain;
       padding:8px;
+    }
+
+    /* Make logo clickable without changing look */
+    .logoLink{
+      display:inline-flex;
+      text-decoration:none;
+      color:inherit;
+      border-radius:16px;
+    }
+    .logoLink:focus-visible{
+      outline:3px solid rgba(12,115,143,.35);
+      outline-offset:3px;
     }
 
     h1{ margin:0; font-size:24px; line-height:1.2; }
@@ -129,11 +141,15 @@
 <body>
   <div class="wrap">
     <div class="header">
-      <div class="logoWrap">
-        <img src="logo.png" alt="Loud & Claire logo" />
-      </div>
+      <!-- Clickable logo box -->
+      <a class="logoLink" href="https://bit.ly/LoudandClaire" target="_blank" rel="noopener noreferrer" aria-label="Visit Loud & Claire">
+        <div class="logoWrap">
+          <img src="logo.png" alt="Loud & Claire logo" />
+        </div>
+      </a>
+
       <div>
-        <h1>Tap to Proclaim It</h1>
+        <h1>Proclaim It</h1>
         <div class="sub">Loud and Claire</div>
       </div>
     </div>
@@ -349,6 +365,7 @@ function pickFemaleAmericanVoice(){
 function readAloud(){
   if (!current) return;
 
+  // Add tiny natural pause before reference
   const utter = new SpeechSynthesisUtterance(`${current.text} … ${current.ref}`);
   const v = pickFemaleAmericanVoice();
   if (v) utter.voice = v;
@@ -396,4 +413,5 @@ window.addEventListener("pageshow", (e) => {
 </script>
 </body>
 </html>
+
 
