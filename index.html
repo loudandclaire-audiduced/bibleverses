@@ -39,7 +39,6 @@
       margin:10px 0 18px;
     }
 
-    /* LOGO — no yellow border */
     .logoWrap{
       width:56px;
       height:56px;
@@ -52,6 +51,7 @@
       overflow:hidden;
       flex:0 0 auto;
     }
+
     .logoWrap img{
       width:100%;
       height:100%;
@@ -59,13 +59,13 @@
       padding:8px;
     }
 
-    /* Make logo clickable without changing look */
     .logoLink{
       display:inline-flex;
       text-decoration:none;
       color:inherit;
       border-radius:16px;
     }
+
     .logoLink:focus-visible{
       outline:3px solid rgba(12,115,143,.35);
       outline-offset:3px;
@@ -80,7 +80,6 @@
       margin-top:4px;
     }
 
-    /* MAIN CONTENT CARD — yellow outline */
     .card{
       background:var(--card);
       border-radius:var(--radius);
@@ -134,6 +133,7 @@
       color:#ffffff;
       cursor:pointer;
     }
+
     button:active{ transform: scale(.98); }
   </style>
 </head>
@@ -141,7 +141,6 @@
 <body>
   <div class="wrap">
     <div class="header">
-      <!-- Clickable logo box -->
       <a class="logoLink" href="https://bit.ly/LoudandClaire" target="_blank" rel="noopener noreferrer" aria-label="Visit Loud & Claire">
         <div class="logoWrap">
           <img src="logo.png" alt="Loud & Claire logo" />
@@ -165,11 +164,7 @@
   </div>
 
 <script>
-/* ===============================
-   ALL 100 VERSES + CATEGORIES
-   =============================== */
 const VERSES = [
-  // Knowing God’s Love & Character (10)
   { category:"Knowing God’s Love & Character", ref:"1 John 4:8", text:"God is love." },
   { category:"Knowing God’s Love & Character", ref:"Genesis 1:1", text:"In the beginning God created the heavens and the earth." },
   { category:"Knowing God’s Love & Character", ref:"John 3:16", text:"For God so loved the world that he gave his one and only Son." },
@@ -181,19 +176,17 @@ const VERSES = [
   { category:"Knowing God’s Love & Character", ref:"Isaiah 40:28", text:"The Lord is the everlasting God, the Creator of the ends of the earth." },
   { category:"Knowing God’s Love & Character", ref:"Psalm 136:1", text:"Give thanks to the Lord, for he is good. His love endures forever." },
 
-  // Strength, Courage & Comfort (10)
   { category:"Strength, Courage & Comfort", ref:"Joshua 1:9", text:"Be strong and courageous. Do not be afraid... for the Lord your God will be with you." },
   { category:"Strength, Courage & Comfort", ref:"Philippians 4:13", text:"I can do all things through Christ who strengthens me." },
   { category:"Strength, Courage & Comfort", ref:"Psalm 56:3", text:"When I am afraid, I put my trust in you." },
   { category:"Strength, Courage & Comfort", ref:"Psalm 23:1", text:"The Lord is my shepherd, I lack nothing." },
   { category:"Strength, Courage & Comfort", ref:"1 Peter 5:7", text:"Cast all your anxiety on him because he cares for you." },
-  { category:"Strength, Courage & Comfort", ref:"Isaiah 41:10", text:"So do not fear, for I am with you." },
+  { category:"Strength, Courage & Comfort", ref:"Isaiah 41:10", text:"So do not fear, for I am with you.", audio:"isaiah-41-10.mp3" },
   { category:"Strength, Courage & Comfort", ref:"Psalm 46:1", text:"God is our refuge and strength, an ever-present help in trouble." },
   { category:"Strength, Courage & Comfort", ref:"Nehemiah 8:10", text:"The joy of the Lord is your strength." },
   { category:"Strength, Courage & Comfort", ref:"Psalm 27:1", text:"The Lord is my light and my salvation—whom shall I fear?" },
   { category:"Strength, Courage & Comfort", ref:"Proverbs 18:10", text:"The name of the Lord is a fortified tower; the righteous run to it and are safe." },
 
-  // How to Treat Others (Kindness & Love) (10)
   { category:"How to Treat Others (Kindness & Love)", ref:"Ephesians 4:32", text:"Be kind and compassionate to one another, forgiving each other." },
   { category:"How to Treat Others (Kindness & Love)", ref:"Luke 6:31", text:"Do to others as you would have them do to you." },
   { category:"How to Treat Others (Kindness & Love)", ref:"1 Corinthians 13:4", text:"Love is patient, love is kind." },
@@ -205,7 +198,6 @@ const VERSES = [
   { category:"How to Treat Others (Kindness & Love)", ref:"Galatians 6:10", text:"Therefore, as we have opportunity, let us do good to all people." },
   { category:"How to Treat Others (Kindness & Love)", ref:"Hebrews 13:16", text:"And do not forget to do good and to share with others." },
 
-  // Growing in Faith & Wisdom (10)
   { category:"Growing in Faith & Wisdom", ref:"Proverbs 3:5", text:"Trust in the Lord with all your heart and lean not on your own understanding." },
   { category:"Growing in Faith & Wisdom", ref:"Psalm 119:105", text:"Your word is a lamp for my feet, a light on my path." },
   { category:"Growing in Faith & Wisdom", ref:"Hebrews 11:1", text:"Now faith is confidence in what we hope for and assurance about what we do not see." },
@@ -217,7 +209,6 @@ const VERSES = [
   { category:"Growing in Faith & Wisdom", ref:"Psalm 119:11", text:"I have hidden your word in my heart that I might not sin against you." },
   { category:"Growing in Faith & Wisdom", ref:"Matthew 7:7", text:"Ask and it will be given to you; seek and you will find." },
 
-  // Obeying & Pleasing God (10)
   { category:"Obeying & Pleasing God", ref:"Colossians 3:20", text:"Children, obey your parents in everything, for this pleases the Lord." },
   { category:"Obeying & Pleasing God", ref:"Ephesians 6:1", text:"Children, obey your parents in the Lord, for this is right." },
   { category:"Obeying & Pleasing God", ref:"1 Thessalonians 5:17", text:"Pray continually." },
@@ -229,31 +220,28 @@ const VERSES = [
   { category:"Obeying & Pleasing God", ref:"Matthew 5:16", text:"Let your light shine before others, that they may see your good deeds." },
   { category:"Obeying & Pleasing God", ref:"Numbers 6:24", text:"The Lord bless you and keep you." },
 
-  // God’s Power & Creation (10)
   { category:"God’s Power & Creation", ref:"Psalm 19:1", text:"The heavens declare the glory of God; the skies proclaim the work of his hands." },
   { category:"God’s Power & Creation", ref:"Psalm 139:14", text:"I praise you because I am fearfully and wonderfully made." },
   { category:"God’s Power & Creation", ref:"Jeremiah 32:17", text:"Ah, Sovereign Lord... Nothing is too hard for you." },
   { category:"God’s Power & Creation", ref:"Psalm 147:4", text:"He determines the number of the stars and calls them each by name." },
-  { category:"God’s Power & Creation", ref:"Matthew 19:26", text:"With man this is impossible, but with God all things are possible." },
+  { category:"God’s Power & Creation", ref:"Matthew 19:26", text:"With man this is impossible, but with God all things are possible.", audio:"matthew-19-26.mp3" },
   { category:"God’s Power & Creation", ref:"Psalm 33:6", text:"By the word of the Lord the heavens were made." },
   { category:"God’s Power & Creation", ref:"Job 37:5", text:"God’s voice thunders in marvelous ways; he does great things beyond our understanding." },
   { category:"God’s Power & Creation", ref:"Psalm 8:1", text:"Lord, our Lord, how majestic is your name in all the earth!" },
   { category:"God’s Power & Creation", ref:"Isaiah 40:26", text:"Lift up your eyes and look to the heavens: Who created all these?" },
   { category:"God’s Power & Creation", ref:"Psalm 104:24", text:"How many are your works, Lord! In wisdom you made them all." },
 
-  // Following Jesus (10)
   { category:"Following Jesus", ref:"John 8:12", text:"I am the light of the world. Whoever follows me will never walk in darkness." },
   { category:"Following Jesus", ref:"Matthew 4:19", text:"Come, follow me, Jesus said, and I will send you out to fish for people." },
   { category:"Following Jesus", ref:"John 10:11", text:"I am the good shepherd. The good shepherd lays down his life for the sheep." },
   { category:"Following Jesus", ref:"John 14:6", text:"Jesus answered, 'I am the way and the truth and the life.'" },
-  { category:"Following Jesus", ref:"John 15:5", text:"I am the vine; you are the branches. If you remain in me... you will bear much fruit." },
+  { category:"Following Jesus", ref:"John 15:5", text:"I am the vine; you are the branches. If you remain in me... you will bear much fruit.", audio:"john-15-5.mp3" },
   { category:"Following Jesus", ref:"Matthew 28:20", text:"And surely I am with you always, to the very end of the age." },
   { category:"Following Jesus", ref:"Revelation 3:20", text:"Here I am! I stand at the door and knock." },
   { category:"Following Jesus", ref:"John 15:13", text:"Greater love has no one than this: to lay down one’s life for one’s friends." },
   { category:"Following Jesus", ref:"Mark 10:14", text:"Let the little children come to me, and do not hinder them." },
   { category:"Following Jesus", ref:"Luke 19:10", text:"For the Son of Man came to seek and to save the lost." },
 
-  // Wisdom & Honesty (10)
   { category:"Wisdom & Honesty", ref:"Proverbs 12:22", text:"The Lord detests lying lips, but he delights in people who are trustworthy." },
   { category:"Wisdom & Honesty", ref:"Psalm 119:18", text:"Open my eyes that I may see wonderful things in your law." },
   { category:"Wisdom & Honesty", ref:"Proverbs 4:23", text:"Above all else, guard your heart, for everything you do flows from it." },
@@ -265,10 +253,9 @@ const VERSES = [
   { category:"Wisdom & Honesty", ref:"Psalm 111:10", text:"The fear of the Lord is the beginning of wisdom." },
   { category:"Wisdom & Honesty", ref:"Proverbs 13:20", text:"Walk with the wise and become wise." },
 
-  // Peace & Contentment (10)
   { category:"Peace & Contentment", ref:"Psalm 4:8", text:"In peace I will lie down and sleep, for you alone, Lord, make me dwell in safety." },
   { category:"Peace & Contentment", ref:"John 14:27", text:"Peace I leave with you; my peace I give you." },
-  { category:"Peace & Contentment", ref:"Philippians 4:6", text:"Do not be anxious about anything, but in every situation, by prayer... present your requests to God." },
+  { category:"Peace & Contentment", ref:"Philippians 4:6", text:"Do not be anxious about anything, but in every situation, by prayer... present your requests to God.", audio:"philippians-4-6.mp3" },
   { category:"Peace & Contentment", ref:"Hebrews 13:5", text:"Be content with what you have, because God has said, 'Never will I leave you.'" },
   { category:"Peace & Contentment", ref:"Psalm 37:4", text:"Take delight in the Lord, and he will give you the desires of your heart." },
   { category:"Peace & Contentment", ref:"Isaiah 26:3", text:"You will keep in perfect peace those whose minds are steadfast, because they trust in you." },
@@ -277,8 +264,7 @@ const VERSES = [
   { category:"Peace & Contentment", ref:"Psalm 16:11", text:"You make known to me the path of life; you will fill me with joy in your presence." },
   { category:"Peace & Contentment", ref:"Matthew 6:33", text:"But seek first his kingdom and his righteousness." },
 
-  // Serving & Character (10)
-  { category:"Serving & Character", ref:"Galatians 5:22-23", text:"But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control." },
+  { category:"Serving & Character", ref:"Galatians 5:22-23", text:"But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control.", audio:"galatians-5-22-23.mp3" },
   { category:"Serving & Character", ref:"1 Timothy 4:12", text:"Don’t let anyone look down on you because you are young, but set an example for the believers." },
   { category:"Serving & Character", ref:"1 Thessalonians 5:11", text:"Therefore encourage one another and build each other up." },
   { category:"Serving & Character", ref:"Matthew 5:9", text:"Blessed are the peacemakers, for they will be called children of God." },
@@ -290,9 +276,6 @@ const VERSES = [
   { category:"Serving & Character", ref:"Psalm 107:1", text:"Give thanks to the Lord, for he is good; his love endures forever." }
 ];
 
-/* ===============================
-   Kid-friendly explanations per category
-   =============================== */
 const KID_LINES = {
   "Knowing God’s Love & Character": "God loves you, sees you, and is good to you. You can trust His heart.",
   "Strength, Courage & Comfort": "When you feel scared or worried, God is with you and will help you.",
@@ -305,13 +288,11 @@ const KID_LINES = {
   "Peace & Contentment": "God can give your heart peace—even when life feels loud.",
   "Serving & Character": "God grows good fruit in you—so you can shine for Jesus and do good with joy."
 };
+
 function kidLineFor(category){
   return KID_LINES[category] || "God’s Word is a gift—let it stick in your heart today.";
 }
 
-/* ===============================
-   No-repeat shuffle bag
-   =============================== */
 let bag = [];
 function refillBag(){
   bag = VERSES.map((_, i) => i);
@@ -320,6 +301,7 @@ function refillBag(){
     [bag[i], bag[j]] = [bag[j], bag[i]];
   }
 }
+
 function pickVerse(){
   if (bag.length === 0) refillBag();
   return VERSES[bag.pop()];
@@ -334,15 +316,22 @@ function showVerse(v){
   document.getElementById("kidLine").textContent = kidLineFor(v.category);
 }
 
-/* ===============================
-   Read Aloud: prefer normal female American voice
-   =============================== */
+function getTestVerse(){
+  const params = new URLSearchParams(window.location.search);
+  const test = params.get("test");
+  if (!test) return null;
+
+  return VERSES.find(v =>
+    v.audio && v.audio.replace(".mp3", "") === test
+  ) || null;
+}
+
 function pickFemaleAmericanVoice(){
   const voices = speechSynthesis.getVoices() || [];
   if (!voices.length) return null;
 
   const isEnUS = v => (v.lang || "").toLowerCase().includes("en-us");
-  const isEn   = v => (v.lang || "").toLowerCase().startsWith("en");
+  const isEn = v => (v.lang || "").toLowerCase().startsWith("en");
 
   const femaleHints = ["samantha","ava","victoria","allison","zoe","emma","olivia","tessa","karen","moira","joanna","zira","susan","lisa","nicole"];
   const qualityHints = ["premium","enhanced","natural","neural","siri"];
@@ -362,10 +351,34 @@ function pickFemaleAmericanVoice(){
   return voices.slice().sort((a,b)=>score(b)-score(a))[0] || null;
 }
 
+let currentAudio = null;
+
 function readAloud(){
   if (!current) return;
 
-  // Add tiny natural pause before reference
+  if (current.audio){
+    speechSynthesis.cancel();
+
+    if (currentAudio){
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
+    currentAudio = new Audio(current.audio);
+
+    currentAudio.play().catch(() => {
+      fallbackVoice();
+    });
+
+    return;
+  }
+
+  fallbackVoice();
+}
+
+function fallbackVoice(){
+  if (!current) return;
+
   const utter = new SpeechSynthesisUtterance(`${current.text} … ${current.ref}`);
   const v = pickFemaleAmericanVoice();
   if (v) utter.voice = v;
@@ -378,40 +391,41 @@ function readAloud(){
   speechSynthesis.speak(utter);
 }
 
-// preload voices
 function initVoices(){ speechSynthesis.getVoices(); }
 if ("speechSynthesis" in window){
   initVoices();
   speechSynthesis.onvoiceschanged = initVoices;
 }
 
-/* ===============================
-   New random verse on NFC tap / return to page
-   =============================== */
 let lastAutoChange = 0;
 function maybeAutoChange(){
   const now = Date.now();
-  if (now - lastAutoChange < 800) return; // debounce
+  if (now - lastAutoChange < 800) return;
   lastAutoChange = now;
   showVerse(pickVerse());
 }
 
-// initial load
 refillBag();
-showVerse(pickVerse());
 
-// When NFC tap re-opens the page / brings it forward:
+const testVerse = getTestVerse();
+
+if (testVerse){
+  showVerse(testVerse);
+} else {
+  showVerse(pickVerse());
+}
+
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) maybeAutoChange();
 });
+
 window.addEventListener("focus", () => {
   maybeAutoChange();
 });
+
 window.addEventListener("pageshow", (e) => {
   if (e.persisted) maybeAutoChange();
 });
 </script>
 </body>
 </html>
-
-
